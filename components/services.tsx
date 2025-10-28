@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
+import { Sparkles, Palette, Zap, Hand, Droplet, Flower2 } from "lucide-react"
 
 const services = [
   {
@@ -63,7 +64,8 @@ export default function Services() {
   }, [])
 
   return (
-    <section id="services" className="py-20 bg-background">
+    <section id="services" className="py-20 bg-background relative">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center mb-4 metallic-gold">Our Services</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -71,23 +73,33 @@ export default function Services() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <Card
-              key={service.id}
-              data-service-id={service.id}
-              data-service-card
-              className={`bg-card border-border hover:border-primary transition-all hover:shadow-lg duration-500 ${
-                visibleServices.includes(service.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              } p-6`}
-              style={{
-                transitionDelay: `${index * 100}ms`,
-              }}
-            >
-              <h3 className="text-xl font-semibold metallic-gold mb-2">{service.name}</h3>
-              <p className="text-muted-foreground mb-4">{service.description}</p>
-              <p className="text-lg font-bold metallic-gold">{service.price}</p>
-            </Card>
-          ))}
+          {services.map((service, index) => {
+            return (
+              <Card
+                key={service.id}
+                data-service-id={service.id}
+                data-service-card
+                className={`service-card-enhanced bg-card transition-all duration-500 group relative overflow-hidden ${visibleServices.includes(service.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  } p-6`}
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="relative z-10">
+                  <h3 className="text-xl font-semibold metallic-gold mb-2 group-hover:text-accent transition-colors duration-300">
+                    {service.name}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 group-hover:text-foreground transition-colors duration-300">
+                    {service.description}
+                  </p>
+                  <p className="text-lg font-bold metallic-gold">{service.price}</p>
+                </div>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

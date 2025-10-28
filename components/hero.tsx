@@ -28,18 +28,38 @@ export default function Hero() {
         }}
       />
 
+      {/* Animated bokeh overlays */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
       <div
         className="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"
         style={{ animationDelay: "1s" }}
       />
 
+      {/* Shimmer effect overlay */}
+      <div
+        className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-500 pointer-events-none"
+        style={{
+          backgroundImage: "linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%)",
+          backgroundSize: "200% 200%",
+          animation: "shimmer 3s infinite",
+        }}
+      />
+
+      <div
+        className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full opacity-60 animate-pulse"
+        style={{ animationDelay: "0s" }}
+      />
+      <div
+        className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-accent rounded-full opacity-40 animate-pulse"
+        style={{ animationDelay: "0.5s" }}
+      />
+      <div
+        className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-primary rounded-full opacity-50 animate-pulse"
+        style={{ animationDelay: "1s" }}
+      />
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center items-center text-center">
-        <h1
-          className={`text-5xl md:text-7xl font-bold mb-6 metallic-gold metallic-shine ${
-            isVisible ? "float-in" : "opacity-0"
-          }`}
-        >
+        <h1 className={`text-5xl md:text-7xl font-bold mb-6 text-shimmer ${isVisible ? "float-in" : "opacity-0"}`}>
           Eva Nails Salon
         </h1>
         <p
@@ -59,7 +79,7 @@ export default function Hero() {
           <Button
             onClick={handleCall}
             size="lg"
-            className="bg-primary hover:bg-primary/90 glow-border">
+            className="bg-primary hover:bg-primary/90 glow-shine">
               Call to Book Appointment
           </Button>
           <Button size="lg" variant="outline">
