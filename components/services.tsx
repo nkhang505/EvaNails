@@ -83,9 +83,9 @@ export default function Services() {
                 transitionDelay: `${index * 100}ms`,
               }}
             >
-              <h3 className="text-xl font-semibold text-primary mb-2">{service.name}</h3>
+              <h3 className="text-xl font-semibold metallic-gold mb-2">{service.name}</h3>
               <p className="text-muted-foreground mb-4">{service.description}</p>
-              <p className="text-lg font-bold text-primary">{service.price}</p>
+              <p className="text-lg font-bold metallic-gold">{service.price}</p>
             </Card>
           ))}
         </div>

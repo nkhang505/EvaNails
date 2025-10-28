@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -10,20 +11,20 @@
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.65 0.2 70);
+  --primary: #d4af37;
   --primary-foreground: oklch(0.08 0 0);
   --secondary: oklch(0.15 0 0);
   --secondary-foreground: oklch(0.95 0 0);
   --muted: oklch(0.3 0 0);
   --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.65 0.2 70);
+  --accent: #ffd700;
   --accent-foreground: oklch(0.08 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.95 0 0);
   --border: oklch(0.2 0 0);
   --input: oklch(0.15 0 0);
-  --ring: oklch(0.65 0.2 70);
-  --chart-1: oklch(0.65 0.2 70);
+  --ring: #d4af37;
+  --chart-1: #d4af37;
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
@@ -31,12 +32,12 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.1 0 0);
   --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.65 0.2 70);
+  --sidebar-primary: #d4af37;
   --sidebar-primary-foreground: oklch(0.08 0 0);
   --sidebar-accent: oklch(0.2 0 0);
   --sidebar-accent-foreground: oklch(0.95 0 0);
   --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.65 0.2 70);
+  --sidebar-ring: #d4af37;
 }
 
 .dark {
@@ -46,37 +47,36 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
+  --primary: #d4af37;
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: #ffd700;
+  --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
+  --ring: #d4af37;
+  --chart-1: #d4af37;
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: #d4af37;
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --sidebar-ring: #d4af37;
 }
 
 @theme inline {
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-display: "Playfair Display", serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -122,6 +122,154 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Added Playfair Display font styling for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  color: #d4af37;
+  text-shadow: 0 0 5px #d4af37, 0 0 10px #ffd700;
+  margin: 0.5em 0;
+}
+
+section {
+  padding: 3rem 1rem;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 5rem 1rem;
+  background: url("/images/hero-nails.jpg") no-repeat center / cover;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Added call button styling */
+.call-btn {
+  display: inline-block;
+  background-color: #d4af37;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background-color 0.2s;
+  margin-top: 1rem;
+}
+
+  .call-btn:hover {
+    background-color: #ffd700;
+    transform: scale(1.05);
+  }
+
+/* Added floating call button styling */
+.floating-call {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #d4af37;
+  color: #000;
+  padding: 1rem 1.2rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem;
+  z-index: 999;
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+  .floating-call:hover {
+    background-color: #ffd700;
+    transform: scale(1.1);
+  }
+
+/* Services Section */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .service-card h3 {
+    margin: 1rem;
+  }
+
+  .service-card p {
+    margin: 0 1rem 1rem;
+  }
+
+/* About Section */
+.about {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+  .about img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+  }
+
+.about-text {
+  flex: 1;
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.testimonial {
+  background-color: #f3f3f3;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Enhanced metallic animations with multiple effects */
@@ -170,7 +318,7 @@
 }
 
 .metallic-gold {
-  background: linear-gradient(90deg, oklch(0.65 0.2 70) 0%, oklch(0.75 0.25 75) 50%, oklch(0.65 0.2 70) 100%);
+  background: linear-gradient(90deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
   background-size: 1000px 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

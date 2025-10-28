@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button"
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const handleCall = () => {
+    window.location.href = "tel:(830)701-8162"
+  }
 
   useEffect(() => {
     setIsVisible(true)
@@ -53,8 +56,11 @@ export default function Hero() {
           }`}
           style={{ transitionDelay: "400ms" }}
         >
-          <Button size="lg" className="bg-primary hover:bg-primary/90 glow-border">
-            Book Appointment
+          <Button
+            onClick={handleCall}
+            size="lg"
+            className="bg-primary hover:bg-primary/90 glow-border">
+              Call to Book Appointment
           </Button>
           <Button size="lg" variant="outline">
             Learn More
