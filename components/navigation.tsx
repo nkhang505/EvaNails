@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -14,8 +15,9 @@ export default function Navigation({ mobileMenuOpen, setMobileMenuOpen }: Naviga
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-2xl font-bold metallic-gold">
-            Eva Nails
+          <Link href="/" className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Eva Nails & Spa Logo" width={40} height={40} className="h-10 w-10" />
+            <span className="text-2xl font-bold metallic-gold">Eva Nails</span>
           </Link>
 
           {/* Desktop Menu */}

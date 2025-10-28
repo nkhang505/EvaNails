@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Phone, MapPin, Clock } from "lucide-react"
+import { Phone, MapPin, Clock, Facebook, Instagram, Twitter } from "lucide-react"
 
 export default function Contact() {
   const handleCall = () => {
@@ -29,6 +29,38 @@ export default function Contact() {
             <h3 className="font-semibold mb-2">Hours</h3>
             <p className="text-muted-foreground">Mon-Sat: 9:30 AM – 7:00 PM</p>
             <p className="text-muted-foreground text-sm">Closed Sunday</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12">
+          <div className="text-center">
+            <h3 className="text-xl font-semibold mb-4 metallic-gold">Follow Us</h3>
+            <div className="flex gap-6 justify-center">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-accent transition-colors duration-300 transform hover:scale-110"
+              >
+                <Facebook className="w-8 h-8" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-accent transition-colors duration-300 transform hover:scale-110"
+              >
+                <Instagram className="w-8 h-8" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-accent transition-colors duration-300 transform hover:scale-110"
+              >
+                <Twitter className="w-8 h-8" />
+              </a>
+            </div>
           </div>
         </div>
 

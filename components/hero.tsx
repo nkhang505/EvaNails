@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 export default function Hero() {
@@ -59,6 +60,16 @@ export default function Hero() {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center items-center text-center">
+        <div className="flex justify-center">
+          <Image
+            src="/logo.png"
+            alt="Eva Nails & Spa Logo"
+            width={500}
+            height={500}
+            quality={100}
+            className="h-150 w-150"
+          />
+        </div>
         <h1 className={`text-5xl md:text-7xl font-bold mb-6 text-shimmer ${isVisible ? "float-in" : "opacity-0"}`}>
           Eva Nails Salon
         </h1>
@@ -81,9 +92,6 @@ export default function Hero() {
             size="lg"
             className="bg-primary hover:bg-primary/90 glow-shine">
               Call to Book Appointment
-          </Button>
-          <Button size="lg" variant="outline">
-            Learn More
           </Button>
         </div>
       </div>

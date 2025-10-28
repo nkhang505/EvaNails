@@ -8,6 +8,7 @@ import About from "@/components/about"
 import Contact from "@/components/contact"
 import Navigation from "@/components/navigation"
 import FloatingActions from "@/components/floating-actions"
+import Testimonials from "@/components/testimonials"
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -19,6 +20,7 @@ export default function Home() {
       <Services />
       <Gallery />
       <About />
+      <Testimonials />
       <Contact />
       <FloatingActions />
     </div>
