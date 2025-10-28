@@ -512,16 +512,6 @@ section {
     display: block;
   }
 
-/* Footer decorative elements */
-.footer-sparkle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #d4af37;
-  border-radius: 50%;
-  animation: float-sparkle 4s ease-in-out infinite;
-}
-
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;

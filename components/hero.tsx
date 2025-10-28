@@ -19,7 +19,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-background via-background to-card pt-20 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-b from-background via-background to-card overflow-hidden pt-0 sm:pt-20">
       <div
         className="absolute inset-0 opacity-10"
         style={{
