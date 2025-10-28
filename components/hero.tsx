@@ -67,7 +67,7 @@ export default function Hero() {
             width={500}
             height={500}
             quality={100}
-            className="h-150 w-150"
+            className="w-full max-w-[150px] sm:max-w-[200px] md:max-w-[250px] object-contain"
           />
         </div>
         <h1 className={`text-5xl md:text-7xl font-bold mb-6 text-shimmer ${isVisible ? "float-in" : "opacity-0"}`}>
