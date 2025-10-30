@@ -107,7 +107,7 @@ export default function Services() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-6 metallic-gold">Our Services</h2>
+        <h2 className="text-4xl font-bold text-center mb-4 ">Our Services</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Discover our range of luxurious nail and spa services designed to make you look and feel your best.
         </p>

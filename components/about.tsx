@@ -26,7 +26,7 @@ export default function About() {
           <div
             className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
           >
-            <h2 className="text-4xl font-bold mb-6 metallic-gold">About Eva Nails</h2>
+            <h2 className="text-4xl font-bold mb-6 ">About Eva Nails</h2>
             <p className="text-muted-foreground mb-4 leading-relaxed">
               Eva Nails Salon is dedicated to providing the highest quality nail care services in an elegant and
               sophisticated environment. Our team of expert technicians brings years of experience and passion to every

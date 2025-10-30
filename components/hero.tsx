@@ -64,13 +64,13 @@ export default function Hero() {
           <Image
             src="/logo.png"
             alt="Eva Nails & Spa Logo"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             quality={100}
-            className="w-full max-w-[150px] sm:max-w-[200px] md:max-w-[250px] object-contain"
+            className="w-full max-w-[400px] sm:max-w-[400px] md:max-w-[400px] object-contain"
           />
         </div>
-        <h1 className={`text-5xl md:text-7xl font-bold mb-6 text-shimmer ${isVisible ? "float-in" : "opacity-0"}`}>
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 btn bg-clip-text text-transparent">
           Eva Nails Salon
         </h1>
         <p
@@ -89,8 +89,7 @@ export default function Hero() {
         >
           <Button
             onClick={handleCall}
-            size="lg"
-            className="bg-primary hover:bg-primary/90 glow-shine">
+            size="lg">
               Call to Book Appointment
           </Button>
         </div>

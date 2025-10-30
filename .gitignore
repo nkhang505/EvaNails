@@ -31,3 +31,5 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+pnpm-lock.yaml
