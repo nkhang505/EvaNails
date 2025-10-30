@@ -35,7 +35,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <Card className="bg-card border-border p-8 w-full max-w-md">
-          <h1 className="text-3xl font-bold text-center mb-2 metallic-gold">Eva Nails Admin</h1>
+          <h1 className="text-3xl font-bold text-center mb-2 ">Eva Nails Admin</h1>
           <p className="text-center text-muted-foreground mb-8">Enter PIN to access admin panel</p>
 
           <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-background text-foreground">
       <nav className="bg-card border-b border-border sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold metallic-gold">
+          <Link href="/" className="text-2xl font-bold ">
             Eva Nails Admin
           </Link>
           <div className="flex gap-4">

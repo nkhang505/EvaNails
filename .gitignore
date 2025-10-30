@@ -28,3 +28,5 @@ next-env.d.ts
 
 # Visual Studio
 .vs/
+
+pnpm-lock.yaml

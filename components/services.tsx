@@ -67,7 +67,7 @@ export default function Services() {
     <section id="services" className="py-20 bg-background relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-4 metallic-gold">Our Services</h2>
+        <h2 className="text-4xl font-bold text-center mb-4 ">Our Services</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Discover our comprehensive range of premium nail care services
         </p>
@@ -89,13 +89,13 @@ export default function Services() {
                 <div className="absolute top-0 right-0 w-20 h-20 bg-primary/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="relative z-10">
-                  <h3 className="text-xl font-semibold metallic-gold mb-2 group-hover:text-accent transition-colors duration-300">
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors duration-300">
                     {service.name}
                   </h3>
                   <p className="text-muted-foreground mb-4 group-hover:text-foreground transition-colors duration-300">
                     {service.description}
                   </p>
-                  <p className="text-lg font-bold metallic-gold">{service.price}</p>
+                  <p className="text-lg font-bold ">{service.price}</p>
                 </div>
               </Card>
             )
