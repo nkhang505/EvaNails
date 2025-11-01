@@ -156,13 +156,11 @@ export default function ServiceManager() {
     })
 
     if (formRef.current) {
-      const yOffset = -50 // adjust this value to move up more or less
+      const yOffset = -80 // adjust this value to move up more or less
       const y = formRef.current.getBoundingClientRect().top + window.scrollY + yOffset
       window.scrollTo({ top: y, behavior: "smooth" })
     }
   }
-
-
 
   const handleUpdate = async () => {
     if (!editingId) return
