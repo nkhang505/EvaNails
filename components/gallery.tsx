@@ -34,7 +34,7 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-20 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-4 metallic-gold">Gallery</h2>
+        <h2 className="text-4xl font-bold text-center mb-4 ">Gallery</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Explore our latest nail designs and transformations
         </p>

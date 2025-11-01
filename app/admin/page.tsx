@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -35,7 +36,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <Card className="bg-card border-border p-8 w-full max-w-md">
-          <h1 className="text-3xl font-bold text-center mb-2 metallic-gold">Eva Nails Admin</h1>
+          <h1 className="text-3xl font-bold text-center mb-2 ">Eva Nails Admin</h1>
           <p className="text-center text-muted-foreground mb-8">Enter PIN to access admin panel</p>
 
           <div className="space-y-4">
@@ -71,8 +72,15 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-background text-foreground">
       <nav className="bg-card border-b border-border sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold metallic-gold">
-            Eva Nails Admin
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="Eva Nails & Spa Logo"
+              width={40}
+              height={40}
+              className="h-10 w-10"
+            />
+            <span> <h1 className="text-2xl">Eva Nails Admin</h1></span>
           </Link>
           <div className="flex gap-4">
             <Link href="/">
@@ -111,7 +119,7 @@ export default function AdminDashboard() {
         <div className="flex gap-4 mb-8 border-b border-border">
           <Button
             onClick={() => setActiveTab("services")}
-            variant={activeTab === "services" ? "default" : "ghost"}
+            variant="ghost"
             className={`rounded-none border-b-2 transition-all ${
               activeTab === "services"
                 ? "border-primary bg-transparent text-primary"
