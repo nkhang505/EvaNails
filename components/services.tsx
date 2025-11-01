@@ -164,7 +164,7 @@ export default function Services() {
                 className="bg-background rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative border-2 border-primary/50 shadow-lg"
               >
                 <div className="sticky top-0 bg-background border-b border-primary/30 p-6 flex justify-between items-center">
-                  <h3 className="text-3xl font-bold metallic-gold">{selectedCategoryData.title}</h3>
+                  <h3 className="text-3xl font-bold ">{selectedCategoryData.title}</h3>
                   <button
                     onClick={() => setSelectedCategory(null)}
                     className="text-muted-foreground hover:text-foreground transition-colors"
@@ -188,7 +188,7 @@ export default function Services() {
                         )}
                       </div>
                       <div className="text-right ml-6">
-                        <p className="metallic-gold font-bold text-lg">${service.price.toFixed(2)}</p>
+                        <p className="font-bold text-lg text-primary">${service.price.toFixed(2)}</p>
                       </div>
                     </div>
                   ))}
