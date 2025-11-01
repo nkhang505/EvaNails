@@ -2,6 +2,7 @@
 
 import { Phone, MapPin } from "lucide-react"
 import { useState } from "react"
+import { Button } from "./ui/button"
 
 export default function FloatingActions() {
   const [showMenu, setShowMenu] = useState(false)
@@ -19,24 +20,26 @@ export default function FloatingActions() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Call Button */}
-      <button
+      <Button
         onClick={handleCall}
         className="flex items-center gap-2 bg-primary hover:bg-accent text-black px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
         aria-label="Call to book appointment"
+        size={"xl"}
       >
         <Phone className="w-5 h-5" />
         <span className="hidden sm:inline">Call Now</span>
-      </button>
+      </Button>
 
       {/* Directions Button */}
-      <button
+      <Button
         onClick={handleDirections}
         className="flex items-center gap-2 bg-primary hover:bg-accent text-black px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold"
         aria-label="Get directions to salon"
+        size={"xl"}
       >
         <MapPin className="w-5 h-5" />
         <span className="hidden sm:inline">Directions</span>
-      </button>
+      </Button>
     </div>
   )
 }
