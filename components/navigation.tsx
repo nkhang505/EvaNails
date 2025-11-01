@@ -29,7 +29,7 @@ export default function Navigation() {
               height={40}
               className="h-10 w-10"
             />
-            <span className="text-2xl font-display ">Eva Nails</span>
+            <span> <h1 className="text-2xl">Eva Nails</h1></span>
           </Link>
 
           {/* Desktop Menu */}
@@ -58,12 +58,12 @@ export default function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <Button
             className="md:hidden p-2 rounded-md hover:bg-primary/10 transition"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          </Button>
         </div>
 
         {/* Mobile Menu */}
