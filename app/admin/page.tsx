@@ -7,13 +7,14 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import ServiceManager from "@/components/admin/service-manager"
+import GalleryManager from "@/components/admin/gallery-manager"
 import { DollarSign, Settings, LogOut } from "lucide-react"
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [pinInput, setPinInput] = useState("")
   const [pinError, setPinError] = useState("")
-  const [activeTab, setActiveTab] = useState<"services">("services")
+  const [activeTab, setActiveTab] = useState<"services" | "gallery">("gallery")
 
   const handlePinSubmit = () => {
     if (pinInput === "1234") {
@@ -118,6 +119,17 @@ export default function AdminDashboard() {
 
         <div className="flex gap-4 mb-8 border-b border-border">
           <Button
+            onClick={() => setActiveTab("gallery")}
+            variant="ghost"
+            className={`rounded-none border-b-2 transition-all ${activeTab === "gallery"
+              ? "border-primary bg-transparent text-primary"
+              : "border-transparent text-muted-foreground"
+              }`}
+          >
+            <Settings className="w-4 h-4 mr-2" />
+            Manage Gallery
+          </Button>
+          <Button
             onClick={() => setActiveTab("services")}
             variant="ghost"
             className={`rounded-none border-b-2 transition-all ${
@@ -131,6 +143,7 @@ export default function AdminDashboard() {
           </Button>
         </div>
 
+        {activeTab === "gallery" && <GalleryManager />}
         {activeTab === "services" && <ServiceManager />}
       </div>
     </div>

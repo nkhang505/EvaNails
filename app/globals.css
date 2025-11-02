@@ -452,6 +452,24 @@
     background-color: oklch(0.65 0.2 70);
     color: oklch(0.08 0 0);
   }
+
+
+  /* Added fade-in animation for gallery items */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
 }
 
 /* Enhanced metallic animations with multiple effects */

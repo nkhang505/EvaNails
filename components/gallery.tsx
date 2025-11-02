@@ -1,26 +1,36 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { supabase } from "@/lib/supabase/client"
+import Link from "next/link"
 
-const galleryItems = [
-  { id: 1, title: "Classic Red", category: "Manicure" },
-  { id: 2, title: "Ombre Design", category: "Nail Art" },
-  { id: 3, title: "French Tips", category: "Manicure" },
-  { id: 4, title: "Glitter Accent", category: "Nail Art" },
-  { id: 5, title: "Gel Extensions", category: "Extensions" },
-  { id: 6, title: "Marble Effect", category: "Nail Art" },
-]
+interface GalleryImage {
+  id: string
+  title: string
+  description?: string
+  image_url: string
+  category: string
+}
 
 export default function Gallery() {
-  const [visibleItems, setVisibleItems] = useState<number[]>([])
+  const [visibleItems, setVisibleItems] = useState<string[]>([])
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [showAll, setShowAll] = useState(false)
+
+  useEffect(() => {
+    fetchGalleryImages()
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = Number(entry.target.getAttribute("data-id"))
-            setVisibleItems((prev) => [...new Set([...prev, id])])
+            const id = entry.target.getAttribute("data-id")
+            if (id) setVisibleItems((prev) => [...new Set([...prev, id])])
           }
         })
       },
@@ -29,7 +39,32 @@ export default function Gallery() {
 
     document.querySelectorAll("[data-gallery-item]").forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [])
+  }, [galleryImages])
+
+  const fetchGalleryImages = async () => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const { data, error: fetchError } = await supabase
+        .from("gallery_images")
+        .select("*")
+
+      if (fetchError) throw fetchError
+
+      // Randomize the array
+      const shuffled = (data || []).sort(() => Math.random() - 0.5)
+
+      setGalleryImages(shuffled)
+    } catch (err) {
+      console.error("[Gallery fetch error]:", err)
+      setError(err instanceof Error ? err.message : "Failed to load gallery images")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // limit visible images
+  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 6)
 
   return (
     <section id="gallery" className="py-20 bg-card">
@@ -39,22 +74,24 @@ export default function Gallery() {
           Explore our latest nail designs and transformations
         </p>
 
+        {isLoading && <p className="text-center text-muted-foreground">Loading gallery...</p>}
+        {error && <p className="text-center text-destructive">{error}</p>}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryItems.map((item, index) => (
+          {displayedImages.map((item, index) => (
             <Card
               key={item.id}
               data-id={item.id}
               data-gallery-item
-              className={`overflow-hidden bg-background border-border hover:border-primary transition-all hover:shadow-lg duration-500 ${
-                visibleItems.includes(item.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+              className={`overflow-hidden bg-background border-border hover:border-primary transition-all hover:shadow-lg duration-500 ${visibleItems.includes(item.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
               style={{
                 transitionDelay: `${index * 100}ms`,
               }}
             >
               <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center overflow-hidden group">
                 <img
-                  src={`/luxury-nail-design-.jpg?height=300&width=300&query=luxury nail design ${item.title}`}
+                  src={item.image_url || "/placeholder.svg"}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
@@ -65,6 +102,18 @@ export default function Gallery() {
               </div>
             </Card>
           ))}
+
+          {!isLoading && !error && galleryImages.length === 0 && (
+            <p className="col-span-full text-center text-muted-foreground">No images available yet.</p>
+          )}
+        </div>
+
+        <div className="flex justify-center mt-12">
+          <Link href="/gallery">
+            <Button className="bg-primary hover:bg-primary/80 text-background px-8 py-2 rounded-lg font-semibold transition-all duration-300">
+              View All Gallery
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

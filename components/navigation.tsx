@@ -1,20 +1,31 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname() // current path
+
   const menuItems = [
     { label: "Services", href: "#services" },
-    { label: "Gallery", href: "#gallery" },
+    { label: "Gallery", href: "/gallery" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
     { label: "Admin", href: "/admin", isButton: true },
   ]
+
+  const getHref = (href: string) => {
+    // if href is a hash link and not on the homepage, prepend "/"
+    if (href.startsWith("#") && pathname !== "/") {
+      return `/${href}`
+    }
+    return href
+  }
 
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
@@ -29,14 +40,14 @@ export default function Navigation() {
               height={40}
               className="h-10 w-10"
             />
-            <span> <h1 className="text-2xl">Eva Nails</h1></span>
+            <span><h1 className="text-2xl">Eva Nails</h1></span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 items-center">
             {menuItems.map((item) =>
               item.isButton ? (
-                <Link key={item.label} href={item.href}>
+                <Link key={item.label} href={getHref(item.href)}>
                   <Button
                     variant="outline"
                     size="sm"
@@ -48,12 +59,12 @@ export default function Navigation() {
               ) : (
                 <Link
                   key={item.label}
-                  href={item.href}
+                  href={getHref(item.href)}
                   className="hover:text-primary transition-colors duration-300"
                 >
                   {item.label}
                 </Link>
-              )
+              ),
             )}
           </div>
 
@@ -69,18 +80,18 @@ export default function Navigation() {
         {/* Mobile Menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out transform ${mobileMenuOpen
-              ? "max-h-96 opacity-100 translate-y-0"
-              : "max-h-0 opacity-0 -translate-y-4"
+            ? "max-h-96 opacity-100 translate-y-0"
+            : "max-h-0 opacity-0 -translate-y-4"
             }`}
         >
           <div className="flex flex-col px-4 pb-4 space-y-2 bg-background">
             {menuItems.map((item, i) => (
               <Link
                 key={item.label}
-                href={item.href}
-                className={`block py-2 rounded-md text-center transition-opacity duration-500 ${mobileMenuOpen ? "opacity-100" : "opacity-0"
-                  }`}
-                style={{ transitionDelay: `${i * 100}ms` }} // stagger effect
+                href={getHref(item.href)}
+                className={`block py-2 rounded-md text-center transition-opacity duration-500 ${mobileMenuOpen ? "opacity-100" : "opacity-0"}`}
+                style={{ transitionDelay: `${i * 100}ms` }}
+                onClick={() => setMobileMenuOpen(false)} // <-- close menu on click
               >
                 {item.isButton ? (
                   <Button variant="outline" size="sm" className="w-full bg-transparent">
