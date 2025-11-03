@@ -8,13 +8,15 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import ServiceManager from "@/components/admin/service-manager"
 import GalleryManager from "@/components/admin/gallery-manager"
+import WeeklyManager from "@/components/admin/weekly-manager"
+import DailyManager from "@/components/admin/daily-manager"
 import { DollarSign, Settings, LogOut } from "lucide-react"
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [pinInput, setPinInput] = useState("")
   const [pinError, setPinError] = useState("")
-  const [activeTab, setActiveTab] = useState<"services" | "gallery">("gallery")
+  const [activeTab, setActiveTab] = useState<"services" | "gallery" | "weekly" | "daily">("daily")
 
   const handlePinSubmit = () => {
     if (pinInput === "1234") {
@@ -119,6 +121,30 @@ export default function AdminDashboard() {
 
         <div className="flex gap-4 mb-8 border-b border-border">
           <Button
+            onClick={() => setActiveTab("daily")}
+            variant="ghost"
+            className={`rounded-none border-b-2 transition-all ${activeTab === "daily"
+              ? "border-primary bg-transparent text-primary"
+              : "border-transparent text-muted-foreground"
+              }`}
+          >
+            <Settings className="w-4 h-4" />
+            Daily Report
+          </Button>
+
+          <Button
+            onClick={() => setActiveTab("weekly")}
+            variant="ghost"
+            className={`rounded-none border-b-2 transition-all ${activeTab === "weekly"
+              ? "border-primary bg-transparent text-primary"
+              : "border-transparent text-muted-foreground"
+              }`}
+          >
+            <Settings className="w-4 h-4" />
+            Weekly Pay
+          </Button>
+
+          <Button
             onClick={() => setActiveTab("gallery")}
             variant="ghost"
             className={`rounded-none border-b-2 transition-all ${activeTab === "gallery"
@@ -126,9 +152,10 @@ export default function AdminDashboard() {
               : "border-transparent text-muted-foreground"
               }`}
           >
-            <Settings className="w-4 h-4 mr-2" />
-            Manage Gallery
+            <Settings className="w-4 h-4" />
+            Gallery
           </Button>
+
           <Button
             onClick={() => setActiveTab("services")}
             variant="ghost"
@@ -138,13 +165,15 @@ export default function AdminDashboard() {
                 : "border-transparent text-muted-foreground"
             }`}
           >
-            <Settings className="w-4 h-4 mr-2" />
-            Manage Services
+            <Settings className="w-4 h-4" />
+            Services
           </Button>
         </div>
 
         {activeTab === "gallery" && <GalleryManager />}
         {activeTab === "services" && <ServiceManager />}
+        {activeTab === "weekly" && <WeeklyManager />}
+        {activeTab === "daily" && <DailyManager />}
       </div>
     </div>
   )
