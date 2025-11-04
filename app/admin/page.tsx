@@ -10,7 +10,12 @@ import ServiceManager from "@/components/admin/service-manager"
 import GalleryManager from "@/components/admin/gallery-manager"
 import WeeklyManager from "@/components/admin/weekly-manager"
 import DailyManager from "@/components/admin/daily-manager"
-import { DollarSign, Settings, LogOut } from "lucide-react"
+import {
+  DollarSign,
+  Settings,
+  CalendarDays,
+  ImageIcon,
+} from "lucide-react"
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -29,18 +34,14 @@ export default function AdminDashboard() {
     }
   }
 
-  const handleLogout = () => {
-    setIsAuthenticated(false)
-    setPinInput("")
-    setPinError("")
-  }
-
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
-        <Card className="bg-card border-border p-8 w-full max-w-md">
-          <h1 className="text-3xl font-bold text-center mb-2 ">Eva Nails Admin</h1>
-          <p className="text-center text-muted-foreground mb-8">Enter PIN to access admin panel</p>
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
+        <Card className="bg-card border-border p-8 w-full max-w-md shadow-lg">
+          <h1 className="text-3xl font-bold text-center mb-2">Eva Nails Admin</h1>
+          <p className="text-center text-muted-foreground mb-8">
+            Enter PIN to access admin panel
+          </p>
 
           <div className="space-y-4">
             <div>
@@ -50,17 +51,20 @@ export default function AdminDashboard() {
                 placeholder="Enter 4-digit PIN"
                 value={pinInput}
                 onChange={(e) => setPinInput(e.target.value.slice(0, 4))}
-                onKeyPress={(e) => e.key === "Enter" && handlePinSubmit()}
+                onKeyDown={(e) => e.key === "Enter" && handlePinSubmit()}
                 className="bg-input border-border text-center text-2xl tracking-widest"
               />
               {pinError && <p className="text-destructive text-sm mt-2">{pinError}</p>}
             </div>
 
-            <Button onClick={handlePinSubmit} className="w-full bg-primary hover:bg-primary/90">
+            <Button
+              onClick={handlePinSubmit}
+              className="w-full bg-primary hover:bg-primary/90"
+            >
               Access Admin Panel
             </Button>
 
-            <Link href="/">
+            <Link href="/" className="block">
               <Button variant="outline" className="w-full bg-transparent">
                 Back to Site
               </Button>
@@ -72,9 +76,10 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {/* Header */}
       <nav className="bg-card border-b border-border sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/logo.png"
@@ -83,98 +88,62 @@ export default function AdminDashboard() {
               height={40}
               className="h-10 w-10"
             />
-            <span> <h1 className="text-2xl">Eva Nails Admin</h1></span>
+            <h1 className="text-xl sm:text-2xl font-semibold">Eva Nails Admin</h1>
           </Link>
-          <div className="flex gap-4">
-            <Link href="/">
-              <Button variant="outline">Back to Site</Button>
+
+          <div className="flex justify-end w-full sm:w-auto">
+            <Link href="/" className="flex-1 sm:flex-none">
+              <Button variant="outline" className="w-full sm:w-auto">
+                Back to Site
+              </Button>
             </Link>
-            <Button onClick={handleLogout} variant="destructive" className="flex items-center gap-2">
-              <LogOut className="w-4 h-4" />
-              Logout
-            </Button>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-card border-border p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-muted-foreground text-sm">Total Services</p>
-                <p className="text-3xl font-bold text-primary mt-2">6</p>
-              </div>
-              <Settings className="w-12 h-12 text-primary/30" />
-            </div>
-          </Card>
-          <Card className="bg-card border-border p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-muted-foreground text-sm">Revenue</p>
-                <p className="text-3xl font-bold text-primary mt-2">$2,450</p>
-              </div>
-              <DollarSign className="w-12 h-12 text-primary/30" />
-            </div>
+      {/* Dashboard Content */}
+      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Welcome Card */}
+        <div className="mb-8">
+          <Card className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 text-center">
+            <h2 className="text-2xl font-semibold text-primary">Welcome, Admin!</h2>
+            <p className="text-muted-foreground mt-2">
+              Manage services, update the gallery, and track your daily and weekly reports.
+            </p>
           </Card>
         </div>
 
-        <div className="flex gap-4 mb-8 border-b border-border">
-          <Button
-            onClick={() => setActiveTab("daily")}
-            variant="ghost"
-            className={`rounded-none border-b-2 transition-all ${activeTab === "daily"
-              ? "border-primary bg-transparent text-primary"
-              : "border-transparent text-muted-foreground"
-              }`}
-          >
-            <Settings className="w-4 h-4" />
-            Daily Report
-          </Button>
-
-          <Button
-            onClick={() => setActiveTab("weekly")}
-            variant="ghost"
-            className={`rounded-none border-b-2 transition-all ${activeTab === "weekly"
-              ? "border-primary bg-transparent text-primary"
-              : "border-transparent text-muted-foreground"
-              }`}
-          >
-            <Settings className="w-4 h-4" />
-            Weekly Pay
-          </Button>
-
-          <Button
-            onClick={() => setActiveTab("gallery")}
-            variant="ghost"
-            className={`rounded-none border-b-2 transition-all ${activeTab === "gallery"
-              ? "border-primary bg-transparent text-primary"
-              : "border-transparent text-muted-foreground"
-              }`}
-          >
-            <Settings className="w-4 h-4" />
-            Gallery
-          </Button>
-
-          <Button
-            onClick={() => setActiveTab("services")}
-            variant="ghost"
-            className={`rounded-none border-b-2 transition-all ${
-              activeTab === "services"
-                ? "border-primary bg-transparent text-primary"
-                : "border-transparent text-muted-foreground"
-            }`}
-          >
-            <Settings className="w-4 h-4" />
-            Services
-          </Button>
+        {/* Navigation Tabs */}
+        <div className="flex flex-wrap gap-2 sm:gap-4 mb-8 border-b border-border justify-around sm:justify-start">
+          {[
+            { key: "daily", label: "Daily Report", icon: <CalendarDays className="w-5 h-5" /> },
+            { key: "weekly", label: "Weekly Pay", icon: <DollarSign className="w-5 h-5" /> },
+            { key: "gallery", label: "Gallery", icon: <ImageIcon className="w-5 h-5" /> },
+            { key: "services", label: "Services", icon: <Settings className="w-5 h-5" /> },
+          ].map((tab) => (
+            <Button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key as typeof activeTab)}
+              variant="ghost"
+              className={`rounded-none border-b-2 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base transition-all px-3 sm:px-4 py-2 sm:py-3 ${activeTab === tab.key
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground"
+                }`}
+            >
+              {tab.icon}
+              <span className="hidden sm:inline">{tab.label}</span>
+            </Button>
+          ))}
         </div>
 
-        {activeTab === "gallery" && <GalleryManager />}
-        {activeTab === "services" && <ServiceManager />}
-        {activeTab === "weekly" && <WeeklyManager />}
-        {activeTab === "daily" && <DailyManager />}
-      </div>
+        {/* Tab Content */}
+        <div>
+          {activeTab === "gallery" && <GalleryManager />}
+          {activeTab === "services" && <ServiceManager />}
+          {activeTab === "weekly" && <WeeklyManager />}
+          {activeTab === "daily" && <DailyManager />}
+        </div>
+      </main>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Trash2, Edit2, Plus, ChevronDown, ChevronUp, Upload } from "lucide-react"
 import { supabase } from "@/lib/supabase/client"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 
 interface GalleryImage {
   id: string
@@ -138,40 +139,47 @@ export default function GalleryManager() {
     }
   }
 
-  const handleDelete = async (id: string) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this image? This action cannot be undone.")
-    if (!confirmDelete) return
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null)
 
+  const handleDelete = (id: string) => {
+    setConfirmDeleteId(id)
+  }
+
+  const confirmDelete = async () => {
+    if (!confirmDeleteId) return
     try {
       // Get image data (to know file path)
       const { data: imageData, error: fetchError } = await supabase
         .from("gallery_images")
         .select("image_url")
-        .eq("id", id)
+        .eq("id", confirmDeleteId)
         .single()
-
       if (fetchError) throw fetchError
 
       // Extract file name from the public URL
       if (imageData?.image_url) {
         const urlParts = imageData.image_url.split("/")
-        const fileName = urlParts[urlParts.length - 1]
+        const fileName = decodeURIComponent(urlParts[urlParts.length - 1]) // <--- decode it
 
-        // Delete file from Supabase Storage
         const { error: storageError } = await supabase.storage.from("gallery").remove([fileName])
         if (storageError) console.warn("Storage delete error:", storageError.message)
       }
 
       // Delete the database record
-      const { error: dbError } = await supabase.from("gallery_images").delete().eq("id", id)
+      const { error: dbError } = await supabase.from("gallery_images").delete().eq("id", confirmDeleteId)
       if (dbError) throw dbError
 
       // Update UI
-      setImages((prev) => prev.filter((img) => img.id !== id))
+      setImages((prev) => prev.filter((img) => img.id !== confirmDeleteId))
+      setConfirmDeleteId(null)
       setError(null)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete gallery image")
     }
+  }
+
+  const cancelDelete = () => {
+    setConfirmDeleteId(null)
   }
 
   const handleEdit = (image: GalleryImage) => {
@@ -375,6 +383,25 @@ export default function GalleryManager() {
           </div>
         ))}
       </div>
+      {/* Delete confirmation dialog */}
+      <Dialog open={!!confirmDeleteId} onOpenChange={cancelDelete}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Delete</DialogTitle>
+          </DialogHeader>
+          <p className="text-muted-foreground text-sm">
+            Are you sure you want to delete this image? This action cannot be undone.
+          </p>
+          <DialogFooter className="flex justify-end gap-2 mt-4">
+            <Button variant="outline" onClick={cancelDelete}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

@@ -45,7 +45,6 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-20 bg-card/50 relative">
-      <div className="absolute top-10 left-10 w-20 h-20 border-2 border-primary/20 rounded-full opacity-30" />
       <div className="absolute bottom-10 right-10 w-32 h-32 border-2 border-primary/10 rounded-full opacity-20" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
