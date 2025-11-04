@@ -70,7 +70,7 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-20 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center p-1 mb-4 ">Gallery</h2>
+        <h2 className="text-center p-1 mb-4 ">Our Gallery</h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Explore our latest nail designs and transformations
         </p>
@@ -120,24 +120,24 @@ export default function Gallery() {
           )}
         </div> */}
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8 ">
           <ScrollVelocityContainer className="w-full">
-            <ScrollVelocityRow baseVelocity={4} direction={1}>
+            <ScrollVelocityRow baseVelocity={2} direction={1} id="scr-1">
               {displayedImages &&
                 displayedImages.map((item, index) => (
                   <img
-                    id={`img-${index}`}
+                    key={`imgr-${index}`}
                     src={item.image_url || "/placeholder.svg"}
                     alt={item.title}
                     className="mx-2 inline-block h-80 w-80 rounded-lg object-cover shadow-sm"
                   />
                 ))}
             </ScrollVelocityRow>
-            <ScrollVelocityRow baseVelocity={4} direction={-1}>
+            <ScrollVelocityRow baseVelocity={2} direction={-1} id="scr-2">
               {displayedImages &&
                 displayedImages.map((item, index) => (
                   <img
-                    id={`img-${index}`}
+                    key={`imgl-${index}`}
                     src={item.image_url || "/placeholder.svg"}
                     alt={item.title}
                     className="mx-2 inline-block h-80 w-80 rounded-lg object-cover shadow-sm"

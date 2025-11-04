@@ -24,7 +24,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div id="about-content" className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div
-            className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
+            className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"} text-center`}
           >
             <h2 className="p-1 mb-6">About Us</h2>
             <h3 className="text-muted-foreground mb-4 leading-relaxed">
@@ -36,7 +36,7 @@ export default function About() {
               We use only premium products and maintain the highest standards of hygiene and professionalism. Each
               client is treated with personalized attention to ensure complete satisfaction.
             </p>
-            <ul className="space-y-2 text-muted-foreground">
+            <ul className="space-y-2 text-muted-foreground flex flex-col justify-center items-center">
               <li className="flex items-center gap-2">
                 <span className="text-primary">✓</span> Expert Technicians
               </li>

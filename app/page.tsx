@@ -9,6 +9,7 @@ import Contact from "@/components/contact"
 import Navigation from "@/components/navigation"
 import FloatingActions from "@/components/floating-actions"
 import Testimonials from "@/components/testimonials"
+import { CenterImage } from "@/components/center-image"
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -17,9 +18,10 @@ export default function Home() {
     <div className="min-h-screen bg-[url('/bg.png')] bg-cover bg-center bg-fixed text-foreground">
       <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <Hero />
+      <CenterImage />
+      <About />
       <Services />
       <Gallery />
-      <About />
       <Testimonials />
       <Contact />
       <FloatingActions />
