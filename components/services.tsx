@@ -107,10 +107,10 @@ export default function Services() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-4 ">Our Services</h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <h2 className="text-center mb-4">Our Services</h2>
+        <h3 className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Discover our range of luxurious nail and spa services designed to make you look and feel your best.
-        </p>
+        </h3>
 
         {/* Category Display */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -135,12 +135,12 @@ export default function Services() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/20 transition-colors duration-300" />
-                <h3 className="absolute bottom-14 left-4 text-white text-2xl font-semibold drop-shadow-lg">
+                <h2 className="absolute bottom-12 left-4 text-white text-5xl drop-shadow-lg">
                   {category.title}
+                </h2>
+                <h3 className="absolute bottom-4 left-4 text-white text-sm drop-shadow-md">
+                  Click to view options for {category.title.toLowerCase()}.
                 </h3>
-                <p className="absolute bottom-4 left-4 text-white text-sm drop-shadow-md">
-                  Click to view our full list of {category.title.toLowerCase()} services.
-                </p>
               </div>
 
             </motion.div>
@@ -164,7 +164,7 @@ export default function Services() {
                 className="bg-background rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative border-2 border-primary/50 shadow-lg"
               >
                 <div className="sticky top-0 bg-background border-b border-primary/30 p-6 flex justify-between items-center">
-                  <h3 className="text-3xl font-bold ">{selectedCategoryData.title}</h3>
+                  <h2 className="pl-1">{selectedCategoryData.title}</h2>
                   <button
                     onClick={() => setSelectedCategory(null)}
                     className="text-muted-foreground hover:text-foreground transition-colors"
@@ -180,15 +180,15 @@ export default function Services() {
                       className="flex justify-between items-start p-4 rounded-lg hover:bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all duration-300 group"
                     >
                       <div className="flex-1">
-                        <p className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                           {service.name}
-                        </p>
+                        </h3>
                         {service.description && (
-                          <p className="text-sm text-muted-foreground mt-2">{service.description}</p>
+                          <h4 className="text-sm text-muted-foreground mt-2">{service.description}</h4>
                         )}
                       </div>
                       <div className="text-right ml-6">
-                        <p className="font-bold text-lg text-primary">${service.price.toFixed(2)}</p>
+                        <h3 className="font-bold text-lg text-primary">${service.price.toFixed(2)}</h3>
                       </div>
                     </div>
                   ))}

@@ -9,32 +9,32 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-card">
+    <section id="contact" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-12 ">Get In Touch</h2>
+        <h2 className="text-center p-1 mb-12 ">Get In Touch</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center">
             <Phone className="w-12 h-12 text-yellow-200 mx-auto mb-4" />
             <h3 className="font-semibold mb-2">Call Us</h3>
-            <p className="text-muted-foreground">(830) 701-8162</p>
+            <h3 className="text-muted-foreground">(830) 701-8162</h3>
           </div>
           <div className="text-center">
             <MapPin className="w-12 h-12 text-yellow-200 mx-auto mb-4" />
             <h3 className="font-semibold mb-2">Location</h3>
-            <p className="text-muted-foreground">936 Junction Hwy Suite D, Kerrville, TX 78028</p>
+            <h3 className="text-muted-foreground">936 Junction Hwy Suite D, Kerrville, TX 78028</h3>
           </div>
           <div className="text-center">
             <Clock className="w-12 h-12 text-yellow-200 mx-auto mb-4" />
             <h3 className="font-semibold mb-2">Hours</h3>
-            <p className="text-muted-foreground">Mon-Sat: 9:30 AM – 7:00 PM</p>
-            <p className="text-muted-foreground text-sm">Closed Sunday</p>
+            <h3 className="text-muted-foreground">Mon-Sat: 9:30 AM – 7:00 PM</h3>
+            <h3 className="text-muted-foreground text-sm">Closed Sunday</h3>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12">
           <div className="text-center">
-            <h3 className="text-xl font-semibold mb-4 ">Follow Us</h3>
+            {/* <h2 className="p-1 mb-4 ">Follow Us</h2> */}
             <div className="flex gap-6 justify-center">
               <a
                 href="https://facebook.com"
