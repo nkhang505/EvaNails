@@ -32,22 +32,22 @@ export default function About() {
               sophisticated environment. Our team of expert technicians brings years of experience and passion to every
               service.
             </h3>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
+            <h3 className="text-muted-foreground mb-4 leading-relaxed">
               We use only premium products and maintain the highest standards of hygiene and professionalism. Each
               client is treated with personalized attention to ensure complete satisfaction.
-            </p>
+            </h3>
             <ul className="space-y-2 text-muted-foreground flex flex-col justify-center items-center">
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Expert Technicians
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Expert Technicians</h3>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Premium Products
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Premium Products</h3>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Luxury Environment
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Luxury Environment</h3>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Personalized Service
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Personalized Service</h3>
               </li>
             </ul>
           </div>

@@ -129,6 +129,7 @@
   /* Smooth scroll behavior */
   html {
     scroll-behavior: smooth;
+    font-size: 1.1rem;
   }
 
   /* Added Playfair Display font styling for headings */

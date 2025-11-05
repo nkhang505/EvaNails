@@ -12,9 +12,9 @@ export default function Navigation() {
   const pathname = usePathname() // current path
 
   const menuItems = [
+    { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Gallery", href: "/gallery" },
-    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
     { label: "Admin", href: "/admin", isButton: true },
   ]

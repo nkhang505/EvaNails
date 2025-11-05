@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Trash2, Edit2, Plus, ChevronDown, ChevronUp } from "lucide-react"
 import { supabase } from "@/lib/supabase/client"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 
 interface Service {
   id: string
@@ -59,6 +60,9 @@ export default function ServiceManager() {
   const [error, setError] = useState<string | null>(null)
   const [openCategories, setOpenCategories] = useState<string[]>([])
   const formRef = useRef<HTMLDivElement>(null)
+
+  // Delete confirmation state
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null)
 
   useEffect(() => {
     fetchServices()
@@ -133,16 +137,26 @@ export default function ServiceManager() {
     }
   }
 
-  const handleDelete = async (id: string) => {
+  // Open delete confirmation dialog
+  const handleDeleteClick = (id: string) => {
+    setConfirmDeleteId(id)
+  }
+
+  // Confirm deletion
+  const confirmDelete = async () => {
+    if (!confirmDeleteId) return
     try {
-      const { error } = await supabase.from("services").delete().eq("id", id)
+      const { error } = await supabase.from("services").delete().eq("id", confirmDeleteId)
       if (error) throw error
-      setServices((prev) => prev.filter((s) => s.id !== id))
+      setServices((prev) => prev.filter((s) => s.id !== confirmDeleteId))
+      setConfirmDeleteId(null)
       setError(null)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to delete service")
     }
   }
+
+  const cancelDelete = () => setConfirmDeleteId(null)
 
   const handleEdit = (service: Service) => {
     setEditingId(service.id)
@@ -156,7 +170,7 @@ export default function ServiceManager() {
     })
 
     if (formRef.current) {
-      const yOffset = -80 // adjust this value to move up more or less
+      const yOffset = -80
       const y = formRef.current.getBoundingClientRect().top + window.scrollY + yOffset
       window.scrollTo({ top: y, behavior: "smooth" })
     }
@@ -216,10 +230,7 @@ export default function ServiceManager() {
   return (
     <div className="space-y-6">
       {/* Form Card */}
-      <Card
-        ref={formRef} // Attach ref here
-        className="bg-card border-border p-6"
-      >
+      <Card ref={formRef} className="bg-card border-border p-6">
         <h3 className="text-xl font-semibold mb-4 text-primary flex items-center gap-2">
           <Plus size={20} /> {editingId ? "Edit Service" : "Add New Service"}
         </h3>
@@ -240,30 +251,9 @@ export default function ServiceManager() {
               <option>Additional Services</option>
             </select>
           </div>
-          <InputField
-            label="Price ($)"
-            type="number"
-            value={formData.price}
-            onChange={(val) => handleFieldChange("price", val)}
-            placeholder="0.00"
-          />
-
-          <InputField
-            label="Full Set Price ($)"
-            type="number"
-            value={formData.full_set_price}
-            onChange={(val) => handleFieldChange("full_set_price", val)}
-            placeholder="Optional"
-          />
-
-          <InputField
-            label="Fill-Ins Price ($)"
-            type="number"
-            value={formData.fill_ins_price}
-            onChange={(val) => handleFieldChange("fill_ins_price", val)}
-            placeholder="Optional"
-          />
-
+          <InputField label="Price ($)" type="number" value={formData.price} onChange={(val) => handleFieldChange("price", val)} placeholder="0.00" />
+          <InputField label="Full Set Price ($)" type="number" value={formData.full_set_price} onChange={(val) => handleFieldChange("full_set_price", val)} placeholder="Optional" />
+          <InputField label="Fill-Ins Price ($)" type="number" value={formData.fill_ins_price} onChange={(val) => handleFieldChange("fill_ins_price", val)} placeholder="Optional" />
 
           <div className="flex gap-2 pt-2">
             {editingId ? (
@@ -298,57 +288,41 @@ export default function ServiceManager() {
                   >
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground">{service.name}</h4>
-                      <p
-                        className="text-sm text-muted-foreground mt-1 truncate"
-                        title={service.description}
-                      >
-                        {service.description || "No description"}
-                      </p>
+                      <p className="text-sm text-muted-foreground mt-1 truncate" title={service.description}>{service.description || "No description"}</p>
                       <div className="flex gap-2 mt-2 flex-wrap items-center">
-                        <span className="bg-primary/10 text-primary px-2 py-1 rounded-full font-semibold text-sm">
-                          ${service.price.toFixed(2)}
-                        </span>
-                        {service.full_set_price && (
-                          <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                            Full: ${service.full_set_price.toFixed(2)}
-                          </span>
-                        )}
-                        {service.fill_ins_price && (
-                          <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
-                            Fill: ${service.fill_ins_price.toFixed(2)}
-                          </span>
-                        )}
-                        <span className="bg-background text-muted-foreground px-2 py-1 rounded-full text-xs">
-                          {service.category}
-                        </span>
+                        <span className="bg-primary/10 text-primary px-2 py-1 rounded-full font-semibold text-sm">${service.price.toFixed(2)}</span>
+                        {service.full_set_price && <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Full: ${service.full_set_price.toFixed(2)}</span>}
+                        {service.fill_ins_price && <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Fill: ${service.fill_ins_price.toFixed(2)}</span>}
+                        <span className="bg-background text-muted-foreground px-2 py-1 rounded-full text-xs">{service.category}</span>
                       </div>
                     </div>
                     <div className="flex gap-2">
-                      <Button
-                        onClick={() => handleEdit(service)} // scroll happens here
-                        variant="outline"
-                        size="sm"
-                        className="text-primary hover:text-primary"
-                      >
-                        <Edit2 size={16} />
-                      </Button>
-                      <Button
-                        onClick={() => handleDelete(service.id)}
-                        variant="outline"
-                        size="sm"
-                        className="text-destructive hover:text-destructive"
-                      >
-                        <Trash2 size={16} />
-                      </Button>
+                      <Button onClick={() => handleEdit(service)} variant="outline" size="sm" className="text-primary hover:text-primary"><Edit2 size={16} /></Button>
+                      <Button onClick={() => handleDeleteClick(service.id)} variant="outline" size="sm" className="text-destructive hover:text-destructive"><Trash2 size={16} /></Button>
                     </div>
                   </Card>
                 ))}
-
               </div>
             )}
           </div>
         ))}
       </div>
+
+      {/* Delete confirmation dialog */}
+      <Dialog open={!!confirmDeleteId} onOpenChange={cancelDelete}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Delete</DialogTitle>
+          </DialogHeader>
+          <p className="text-muted-foreground text-sm">
+            Are you sure you want to delete this service? This action cannot be undone.
+          </p>
+          <DialogFooter className="flex justify-end gap-2 mt-4">
+            <Button variant="outline" onClick={cancelDelete}>Cancel</Button>
+            <Button variant="destructive" onClick={confirmDelete}>Delete</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

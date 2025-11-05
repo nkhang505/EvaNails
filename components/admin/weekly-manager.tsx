@@ -30,7 +30,6 @@ export default function WeeklyManager() {
     fetchWeeklyData()
   }, [weekStart])
 
-  // Get Monday of the week
   function getMonday(date: Date) {
     const d = new Date(date)
     const day = d.getDay()
@@ -38,12 +37,10 @@ export default function WeeklyManager() {
     return new Date(d.setDate(diff))
   }
 
-  // Get Sunday of the week (derived from monday)
   function getSundayFromMonday(monday: Date) {
     return new Date(monday.getTime() + 6 * 24 * 60 * 60 * 1000)
   }
 
-  // Format date as YYYY-MM-DD using local date (avoids timezone shifts)
   const formatLocalDate = (d: Date) => {
     const year = d.getFullYear()
     const month = String(d.getMonth() + 1).padStart(2, "0")
@@ -54,12 +51,10 @@ export default function WeeklyManager() {
   const fetchWeeklyData = async () => {
     try {
       setIsLoading(true)
-
       const start = formatLocalDate(weekStart)
       const weekEnd = getSundayFromMonday(weekStart)
       const end = formatLocalDate(weekEnd)
 
-      // Query reports between local start and end (inclusive)
       const { data, error } = await supabase
         .from("report")
         .select("name, income, tip, date")
@@ -68,7 +63,6 @@ export default function WeeklyManager() {
 
       if (error) throw error
 
-      // Group by name
       const grouped: Record<string, WeeklySummary> = {}
       data?.forEach((item: Report) => {
         if (!grouped[item.name]) {
@@ -106,65 +100,93 @@ export default function WeeklyManager() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6 bg-card border-border">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-semibold text-primary flex items-center gap-2">
-            <Calendar size={20} /> Weekly Manager
+      <Card className="p-4 sm:p-6 bg-card border-border shadow-sm">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
+          <h3 className="text-lg sm:text-xl font-semibold text-primary flex items-center gap-2 justify-center sm:justify-start">
+            <Calendar size={20} /> Weekly Pay
           </h3>
-          <div className="flex items-center gap-2">
-            <Button variant="outline" onClick={prevWeek}>
-              <ChevronLeft size={18} /> Prev
+
+          <div className="flex items-center justify-center sm:justify-end gap-2">
+            <Button variant="outline" onClick={prevWeek} className="text-sm sm:text-base">
+              <ChevronLeft size={16} /> Prev
             </Button>
-            <div className="text-sm font-medium text-foreground">
+            <div className="text-sm font-medium text-foreground text-center min-w-[120px]">
               {formatDisplayDate(weekStart)} - {formatDisplayDate(displayEnd)}
             </div>
-            <Button variant="outline" onClick={nextWeek}>
-              Next <ChevronRight size={18} />
+            <Button variant="outline" onClick={nextWeek} className="text-sm sm:text-base">
+              Next <ChevronRight size={16} />
             </Button>
           </div>
         </div>
 
-        {error && <p className="text-destructive mb-4">{error}</p>}
+        {/* Status */}
+        {error && <p className="text-destructive mb-4 text-center">{error}</p>}
         {isLoading ? (
           <p className="text-muted-foreground text-center py-6">Loading weekly data...</p>
         ) : summaries.length === 0 ? (
           <p className="text-muted-foreground text-center py-6">No data for this week.</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full border border-border rounded-lg overflow-hidden">
-              <thead className="bg-primary/10 sticky top-0">
-                <tr>
-                  <th className="py-3 px-4 text-left font-semibold text-foreground">Name</th>
-                  <th className="py-3 px-4 text-left font-semibold text-foreground">Income / Tip</th>
-                  <th className="py-3 px-4 text-left font-semibold text-foreground">Check + Tip</th>
-                  <th className="py-3 px-4 text-left font-semibold text-foreground">Cash</th>
-                </tr>
-              </thead>
-              <tbody>
-                {summaries.map((s) => {
-                  const checkPlusTip = s.totalIncome * 0.6 * 0.6 + s.totalTip
-                  const cash = s.totalIncome * 0.6 * 0.4
-                  return (
-                    <tr
-                      key={s.name}
-                      className="border-t border-border hover:bg-primary/5 transition-colors"
-                    >
-                      <td className="py-2 px-4">{s.name}</td>
-                      <td className="py-2 px-4 text-primary font-medium">
-                        ${s.totalIncome.toFixed(2)} / ${s.totalTip.toFixed(2)}
-                      </td>
-                      <td className="py-2 px-4 text-green-700 font-semibold">
-                        ${checkPlusTip.toFixed(2)}
-                      </td>
-                      <td className="py-2 px-4 text-yellow-700 font-semibold">
-                        ${cash.toFixed(2)}
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
+          <>
+            {/* Desktop Table */}
+            <div className="hidden sm:block overflow-x-auto rounded-md">
+              <table className="w-full border border-border rounded-md overflow-hidden text-sm">
+                <thead className="bg-primary/10">
+                  <tr>
+                    <th className="py-3 px-4 text-left font-semibold text-foreground">Name</th>
+                    <th className="py-3 px-4 text-left font-semibold text-foreground">Income / Tip</th>
+                    <th className="py-3 px-4 text-left font-semibold text-foreground">Check + Tip</th>
+                    <th className="py-3 px-4 text-left font-semibold text-foreground">Cash</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {summaries.map((s) => {
+                    const checkPlusTip = s.totalIncome * 0.6 * 0.6 + s.totalTip
+                    const cash = s.totalIncome * 0.6 * 0.4
+                    return (
+                      <tr
+                        key={s.name}
+                        className="border-t border-border hover:bg-primary/5 transition-colors"
+                      >
+                        <td className="py-2 px-4">{s.name}</td>
+                        <td className="py-2 px-4 text-primary font-medium">
+                          ${s.totalIncome.toFixed(2)} / ${s.totalTip.toFixed(2)}
+                        </td>
+                        <td className="py-2 px-4 text-green-700 font-semibold">
+                          ${checkPlusTip.toFixed(2)}
+                        </td>
+                        <td className="py-2 px-4 text-yellow-700 font-semibold">
+                          ${cash.toFixed(2)}
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Cards */}
+            <div className="grid grid-cols-1 gap-4 sm:hidden">
+              {summaries.map((s) => {
+                const checkPlusTip = s.totalIncome * 0.6 * 0.6 + s.totalTip
+                const cash = s.totalIncome * 0.6 * 0.4
+                return (
+                  <Card key={s.name} className="p-4 border border-border shadow-sm">
+                    <h4 className="font-semibold text-primary mb-1">{s.name}</h4>
+                    <p className="text-sm text-muted-foreground">
+                      <strong>Income / Tip:</strong> ${s.totalIncome.toFixed(2)} / ${s.totalTip.toFixed(2)}
+                    </p>
+                    <p className="text-sm text-green-700 font-semibold mt-1">
+                      Check + Tip: ${checkPlusTip.toFixed(2)}
+                    </p>
+                    <p className="text-sm text-yellow-700 font-semibold">
+                      Cash: ${cash.toFixed(2)}
+                    </p>
+                  </Card>
+                )
+              })}
+            </div>
+          </>
         )}
       </Card>
     </div>
