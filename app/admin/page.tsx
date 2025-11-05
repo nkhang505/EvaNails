@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <Card className="bg-card border-border p-8 w-full max-w-md">
-          <h1 className="text-3xl font-bold text-center mb-2 ">Eva Nails Admin</h1>
+          <h2 className="text-center mb-2 ">Eva Nails Admin</h2>
           <p className="text-center text-muted-foreground mb-8">Enter PIN to access admin panel</p>
 
           <div className="space-y-4">
@@ -83,22 +83,22 @@ export default function AdminDashboard() {
               height={40}
               className="h-10 w-10"
             />
-            <span> <h1 className="text-2xl">Eva Nails Admin</h1></span>
+            <span> <h2 className="text-4xl">Eva Nails Admin</h2></span>
           </Link>
           <div className="flex gap-4">
             <Link href="/">
               <Button variant="outline">Back to Site</Button>
             </Link>
-            <Button onClick={handleLogout} variant="destructive" className="flex items-center gap-2">
+            {/* <Button onClick={handleLogout} variant="destructive" className="flex items-center gap-2">
               <LogOut className="w-4 h-4" />
               Logout
-            </Button>
+            </Button> */}
           </div>
         </div>
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-card border-border p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -117,7 +117,7 @@ export default function AdminDashboard() {
               <DollarSign className="w-12 h-12 text-primary/30" />
             </div>
           </Card>
-        </div>
+        </div> */}
 
         <div className="flex gap-4 mb-8 border-b border-border">
           <Button

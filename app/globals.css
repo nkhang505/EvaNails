@@ -141,7 +141,7 @@
     /* color: #d4af37; */
     /* margin: 0.5em 0; */
 
-    @apply font-display bg-linear-to-br from-[#D5B96B] via-[#efe197] to-[#D5B96B] bg-clip-text text-transparent;
+    @apply font-serif bg-linear-to-br from-[#D5B96B] via-[#efe197] to-[#D5B96B] bg-clip-text text-transparent;
   }
 
   h2 {

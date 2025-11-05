@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
 
         <p
-          className={`text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl transition-all duration-700 ${
+          className={`p-4 text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "200ms" }}

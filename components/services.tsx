@@ -118,13 +118,15 @@ export default function Services() {
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 0, y: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.5 }}
               onClick={() => setSelectedCategory(category.title)}
               className="cursor-pointer group bg-background border border-primary/20 hover:border-primary/50 rounded-2xl shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
             >
               {/* Category Image */}
-              <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl">
+              <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-72 overflow-hidden rounded-2xl ">
                 <Image
                   src={getCategoryImage(category.title)}
                   alt={category.title}

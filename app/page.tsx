@@ -15,7 +15,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[url('/bg.png')] bg-cover bg-center bg-fixed text-foreground">
+    <div className="min-h-screen bg-[url('/bg.png')] bg-cover bg-no-repeat bg-center bg-fixed text-foreground">
       <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <Hero />
       <CenterImage />
