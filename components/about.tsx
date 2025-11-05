@@ -20,34 +20,34 @@ export default function About() {
   }, [])
 
   return (
-    <section id="about" className="py-20 bg-background">
+    <section id="about" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div id="about-content" className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div
-            className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
+            className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"} text-center`}
           >
-            <h2 className="text-4xl font-bold mb-6 ">About Eva Nails</h2>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
+            <h2 className="p-1 mb-6">About Us</h2>
+            <h3 className="text-muted-foreground mb-4 leading-relaxed">
               Eva Nails Salon is dedicated to providing the highest quality nail care services in an elegant and
               sophisticated environment. Our team of expert technicians brings years of experience and passion to every
               service.
-            </p>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
+            </h3>
+            <h3 className="text-muted-foreground mb-4 leading-relaxed">
               We use only premium products and maintain the highest standards of hygiene and professionalism. Each
               client is treated with personalized attention to ensure complete satisfaction.
-            </p>
-            <ul className="space-y-2 text-muted-foreground">
+            </h3>
+            <ul className="space-y-2 text-muted-foreground flex flex-col justify-center items-center">
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Expert Technicians
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Expert Technicians</h3>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Premium Products
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Premium Products</h3>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Luxury Environment
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Luxury Environment</h3>
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span> Personalized Service
+                <span className="text-primary">✓</span><h3 className="text-muted-foreground">Personalized Service</h3>
               </li>
             </ul>
           </div>

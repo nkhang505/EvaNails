@@ -19,7 +19,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-background via-background to-card overflow-hidden pt-0 sm:pt-20">
+    <section className="relative min-h-screen to-card overflow-hidden pt-0 sm:pt-20">
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -70,11 +70,9 @@ export default function Hero() {
             className="w-full max-w-[400px] sm:max-w-[400px] md:max-w-[400px] object-contain"
           />
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 btn bg-clip-text text-transparent">
-          Eva Nails Salon
-        </h1>
+
         <p
-          className={`text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl transition-all duration-700 ${
+          className={`p-4 text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "200ms" }}

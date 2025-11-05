@@ -104,7 +104,7 @@ export default function WeeklyManager() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
           <h3 className="text-lg sm:text-xl font-semibold text-primary flex items-center gap-2 justify-center sm:justify-start">
-            <Calendar size={20} /> Weekly Manager
+            <Calendar size={20} /> Weekly Pay
           </h3>
 
           <div className="flex items-center justify-center sm:justify-end gap-2">

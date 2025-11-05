@@ -155,7 +155,7 @@ export default function DailyManager() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
           <h3 className="text-lg sm:text-xl font-semibold text-primary flex items-center gap-2 justify-center sm:justify-start">
-            <Calendar size={20} /> Daily Report Manager
+            <Calendar size={20} /> Daily Report
           </h3>
           <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2">
             <Button variant="outline" onClick={prevDay} className="flex items-center gap-1 text-sm sm:text-base">
@@ -192,7 +192,7 @@ export default function DailyManager() {
                 <tbody>
                   {reports.map((r) => (
                     <tr key={r.id} className="border-t border-border hover:bg-primary/5 transition-colors">
-                      <td className="py-1.5 sm:py-2 px-2 sm:px-4">
+                      <td className="py-1.5 sm:py-2">
                         <Input
                           value={r.name}
                           placeholder="Enter name"
@@ -200,7 +200,7 @@ export default function DailyManager() {
                           className="w-full text-sm sm:text-base"
                         />
                       </td>
-                      <td className="py-1.5 sm:py-2 px-2 sm:px-4">
+                      <td className="py-1.5 sm:py-2">
                         <Input
                           type="number"
                           value={r.income ?? ""}
@@ -209,7 +209,7 @@ export default function DailyManager() {
                           className="w-full text-sm sm:text-base"
                         />
                       </td>
-                      <td className="py-1.5 sm:py-2 px-2 sm:px-4">
+                      <td className="py-1.5 sm:py-2">
                         <Input
                           type="number"
                           value={r.tip ?? ""}
@@ -218,7 +218,7 @@ export default function DailyManager() {
                           className="w-full text-sm sm:text-base"
                         />
                       </td>
-                      <td className="py-1.5 sm:py-2 px-2 sm:px-4 flex justify-center sm:justify-start gap-2">
+                      <td className="py-1.5 sm:py-2 flex justify-center sm:justify-start gap-2">
                         <Button
                           variant="destructive"
                           size="icon"

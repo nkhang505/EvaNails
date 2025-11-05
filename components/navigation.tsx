@@ -12,9 +12,9 @@ export default function Navigation() {
   const pathname = usePathname() // current path
 
   const menuItems = [
+    { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
     { label: "Gallery", href: "/gallery" },
-    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
     { label: "Admin", href: "/admin", isButton: true },
   ]
@@ -40,7 +40,7 @@ export default function Navigation() {
               height={40}
               className="h-10 w-10"
             />
-            <span><h1 className="text-2xl">Eva Nails</h1></span>
+            <h2 className="text-4xl">Eva Nails</h2>
           </Link>
 
           {/* Desktop Menu */}

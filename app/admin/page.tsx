@@ -38,7 +38,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
         <Card className="bg-card border-border p-8 w-full max-w-md shadow-lg">
-          <h1 className="text-3xl font-bold text-center mb-2">Eva Nails Admin</h1>
+          <h2 className="text-center mb-2">Eva Nails Admin</h2>
           <p className="text-center text-muted-foreground mb-8">
             Enter PIN to access admin panel
           </p>
@@ -88,7 +88,7 @@ export default function AdminDashboard() {
               height={40}
               className="h-10 w-10"
             />
-            <h1 className="text-xl sm:text-2xl font-semibold">Eva Nails Admin</h1>
+            <span> <h2 className="text-4xl">Eva Nails Admin</h2></span>
           </Link>
 
           <div className="flex justify-end w-full sm:w-auto">
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
         {/* Welcome Card */}
         <div className="mb-8">
           <Card className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 text-center">
-            <h2 className="text-2xl font-semibold text-primary">Welcome, Admin!</h2>
+            <h2 className="text-primary">Welcome, Admin!</h2>
             <p className="text-muted-foreground mt-2">
               Manage services, update the gallery, and track your daily and weekly reports.
             </p>

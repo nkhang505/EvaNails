@@ -251,7 +251,7 @@ export default function GalleryManager() {
       {/* Form Card */}
       <Card ref={formRef} className="bg-card border-border p-6">
         <h3 className="text-xl font-semibold mb-4 text-primary flex items-center gap-2">
-          <Plus size={20} /> {editingId ? "Edit Gallery Image" : "Add New Gallery Image"}
+          <Plus size={20} /> {editingId ? "Edit Image" : "Add New Image"}
         </h3>
 
         {error && <p className="text-destructive text-sm mb-4">{error}</p>}
@@ -387,7 +387,7 @@ export default function GalleryManager() {
       <Dialog open={!!confirmDeleteId} onOpenChange={cancelDelete}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Confirm Delete</DialogTitle>
+            <DialogTitle className="h3">Confirm Delete</DialogTitle>
           </DialogHeader>
           <p className="text-muted-foreground text-sm">
             Are you sure you want to delete this image? This action cannot be undone.
