@@ -37,7 +37,7 @@ export default function Contact() {
             <h3 className="text-xl font-semibold mb-4 ">Follow Us</h3>
             <div className="flex gap-6 justify-center">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/eva.nails.and.spa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-yellow-200 hover:text-accent transition-colors duration-300 transform hover:scale-110"
@@ -45,20 +45,12 @@ export default function Contact() {
                 <Facebook className="w-8 h-8" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/nailsbyeva_95/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-yellow-200 hover:text-accent transition-colors duration-300 transform hover:scale-110"
               >
                 <Instagram className="w-8 h-8" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-yellow-200 hover:text-accent transition-colors duration-300 transform hover:scale-110"
-              >
-                <Twitter className="w-8 h-8" />
               </a>
             </div>
           </div>
