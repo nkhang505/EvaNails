@@ -76,10 +76,10 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className="min-h-screen w-full bg-background text-foreground flex flex-col">
       {/* Header */}
       <nav className="bg-card border-b border-border sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/logo.png"
@@ -102,7 +102,7 @@ export default function AdminDashboard() {
       </nav>
 
       {/* Dashboard Content */}
-      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8">
         {/* Welcome Card */}
         <div className="mb-8">
           <Card className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 text-center">
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex flex-wrap gap-2 sm:gap-4 mb-8 border-b border-border justify-around sm:justify-start">
+        <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 mb-8 border-b border-border">
           {[
             { key: "daily", label: "Daily Report", icon: <CalendarDays className="w-5 h-5" /> },
             { key: "weekly", label: "Weekly Pay", icon: <DollarSign className="w-5 h-5" /> },
