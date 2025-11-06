@@ -74,7 +74,12 @@ export default function Gallery() {
   }
 
   // limit visible images
-  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 10)
+  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 20)
+
+  // Split the images into two halves
+  const half = Math.ceil(displayedImages.length / 2)
+  const firstHalf = displayedImages.slice(0, half)
+  const secondHalf = displayedImages.slice(half)
 
   return (
     <section id="gallery" className="relative py-20 bg-card">
@@ -91,11 +96,11 @@ export default function Gallery() {
         )}
         {error && <p className="text-center text-destructive">{error}</p>}
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8 ">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
           <ScrollVelocityContainer className="w-full">
             <ScrollVelocityRow baseVelocity={2} direction={1} id="scr-1">
-              {displayedImages &&
-                displayedImages.map((item, index) => (
+              {firstHalf &&
+                firstHalf.map((item, index) => (
                   <img
                     key={`imgr-${index}`}
                     src={item.image_url || "/placeholder.svg"}
@@ -105,8 +110,8 @@ export default function Gallery() {
                 ))}
             </ScrollVelocityRow>
             <ScrollVelocityRow baseVelocity={2} direction={-1} id="scr-2">
-              {displayedImages &&
-                displayedImages.map((item, index) => (
+              {secondHalf &&
+                secondHalf.map((item, index) => (
                   <img
                     key={`imgl-${index}`}
                     src={item.image_url || "/placeholder.svg"}
