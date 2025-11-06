@@ -131,6 +131,8 @@ export default function Gallery() {
           </Link>
         </div>
       </div>
+      {/* Decorative bottom border */}
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
     </section>
   );
 }
