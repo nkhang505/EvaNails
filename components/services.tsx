@@ -101,6 +101,13 @@ export default function Services() {
 
   const selectedCategoryData = serviceCategories.find((cat) => cat.title === selectedCategory)
 
+  const handleBackdropClick = (event: React.MouseEvent) => {
+    // Close the popup if clicked outside of the modal content
+    if (event.target === event.currentTarget) {
+      setSelectedCategory(null)
+    }
+  }
+
   return (
     <section id="services" className="py-20 bg-background relative overflow-hidden">
       {/* Decorative border line */}
@@ -114,7 +121,7 @@ export default function Services() {
 
         {/* Category Display */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {serviceCategories.map((category, index) => (
+          {serviceCategories.map((category) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 30 }}
@@ -144,7 +151,6 @@ export default function Services() {
                   Click to view options for {category.title.toLowerCase()}.
                 </h3>
               </div>
-
             </motion.div>
           ))}
         </div>
@@ -157,6 +163,7 @@ export default function Services() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
+              onClick={handleBackdropClick}  // Handle backdrop click to close
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -165,13 +172,13 @@ export default function Services() {
                 transition={{ type: "spring", stiffness: 150 }}
                 className="bg-background rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative border-2 border-primary/50 shadow-lg"
               >
-                <div className="sticky top-0 bg-background border-b border-primary/30 p-6 flex justify-between items-center">
+                <div className="sticky top-0 bg-background border-b border-primary/30 p-6 flex justify-between items-center z-10">
                   <h2 className="pl-1">{selectedCategoryData.title}</h2>
                   <button
                     onClick={() => setSelectedCategory(null)}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="p-2 bg-primary/20 hover:bg-primary/40 rounded-full transition-all duration-300 flex items-center justify-center"
                   >
-                    <X size={28} />
+                    <X size={32} className="text-foreground hover:text-white transition-colors duration-300" />
                   </button>
                 </div>
 

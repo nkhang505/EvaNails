@@ -1,5 +1,4 @@
-import { useMotionTemplate, useScroll, useTransform } from "framer-motion";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 
 const SECTION_HEIGHT = 1200;
 

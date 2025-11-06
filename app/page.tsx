@@ -1,6 +1,7 @@
 ﻿"use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Hero from "@/components/hero"
 import Services from "@/components/services"
 import Gallery from "@/components/gallery"
@@ -15,16 +16,30 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[url('/bg.png')] bg-cover bg-no-repeat bg-center bg-fixed text-foreground">
-      <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-      <Hero />
-      <CenterImage />
-      <About />
-      <Services />
-      <Gallery />
-      <Testimonials />
-      <Contact />
-      <FloatingActions />
+    <div className="relative min-h-screen text-foreground overflow-hidden">
+      <div className="fixed inset-0 -z-10">
+        <Image
+          src="/bg.jpg"
+          alt="Background"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </div>
+
+      {/* ✅ Foreground content */}
+      <div className="relative z-10">
+        <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+        <Hero />
+        <CenterImage />
+        <About />
+        <Services />
+        <Gallery />
+        <Testimonials />
+        <Contact />
+        <FloatingActions />
+      </div>
     </div>
   )
 }

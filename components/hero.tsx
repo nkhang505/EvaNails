@@ -23,26 +23,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: "radial-gradient(circle at 50% 50%, oklch(0.65 0.2 70) 0%, transparent 70%)",
           transform: `translateY(${scrollY * 0.5}px)`,
           transition: "transform 0.1s ease-out",
-        }}
-      />
-
-      {/* Animated bokeh overlays */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-      <div
-        className="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"
-        style={{ animationDelay: "1s" }}
-      />
-
-      {/* Shimmer effect overlay */}
-      <div
-        className="absolute inset-0 opacity-0 hover:opacity-20 transition-opacity duration-500 pointer-events-none"
-        style={{
-          backgroundImage: "linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%)",
-          backgroundSize: "200% 200%",
-          animation: "shimmer 3s infinite",
         }}
       />
 
