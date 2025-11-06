@@ -1,6 +1,5 @@
 "use client"
 import { useState, useEffect } from "react"
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase/client"
 import Link from "next/link"
@@ -53,7 +52,7 @@ export default function Gallery() {
       if (fetchError) throw fetchError
 
       // Randomize the array
-      const shuffled = (data || []).sort(() => Math.random() - 0.5)
+      const shuffled = shuffleArray(data || [])
 
       setGalleryImages(shuffled)
     } catch (err) {
@@ -62,6 +61,16 @@ export default function Gallery() {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  // Function to shuffle the array
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffledArray = [...array]
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+        ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
+    }
+    return shuffledArray
   }
 
   // limit visible images
@@ -91,7 +100,7 @@ export default function Gallery() {
                     key={`imgr-${index}`}
                     src={item.image_url || "/placeholder.svg"}
                     alt={item.title}
-                    className="mx-2 inline-block h-80 w-80 rounded-lg object-cover shadow-sm"
+                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-4"
                   />
                 ))}
             </ScrollVelocityRow>
@@ -102,7 +111,7 @@ export default function Gallery() {
                     key={`imgl-${index}`}
                     src={item.image_url || "/placeholder.svg"}
                     alt={item.title}
-                    className="mx-2 inline-block h-80 w-80 rounded-lg object-cover shadow-sm"
+                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-4"
                   />
                 ))}
             </ScrollVelocityRow>
