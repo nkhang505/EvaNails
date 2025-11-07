@@ -1,5 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
+import { Button } from "./ui/button"
+import Carosel from "./ui/carosel"
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -54,7 +56,7 @@ export default function About() {
           <div
             className={`aspect-square bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg overflow-hidden transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
           >
-            <img src="/luxury-nail-salon-interior.jpg" alt="Eva Nails Salon" className="w-full h-full object-cover" />
+            <Carosel />
           </div>
         </div>
       </div>
