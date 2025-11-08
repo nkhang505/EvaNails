@@ -6,11 +6,11 @@ const Carousel = () => {
   const [isHovered, setIsHovered] = useState(false); // State to track hover
 
   const slides = [
-    { id: 1, image: 'salon1.jpg', alt: 'Slide 1' },
-    { id: 2, image: 'salon2.jpg', alt: 'Slide 2' },
-    { id: 3, image: 'salon3.jpg', alt: 'Slide 3' },
-    { id: 4, image: 'salon4.jpg', alt: 'Slide 4' },
-    { id: 5, image: 'salon5.jpg', alt: 'Slide 5' },
+    { id: 1, image: 'salon1.JPG', alt: 'Slide 1' },
+    { id: 2, image: 'salon2.JPG', alt: 'Slide 2' },
+    { id: 3, image: 'salon3.JPG', alt: 'Slide 3' },
+    { id: 4, image: 'salon4.JPG', alt: 'Slide 4' },
+    { id: 5, image: 'salon5.JPG', alt: 'Slide 5' },
   ];
 
   const totalSlides = slides.length;

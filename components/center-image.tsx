@@ -30,7 +30,7 @@ export const CenterImage = () => {
         backgroundPosition: "center",    // Centers the image in the container
         backgroundRepeat: "no-repeat",   // Prevents the image from repeating
         opacity,
-        backgroundImage: 'url("salon.jpg")',
+        backgroundImage: 'url("salon.JPG")',
       }}
     ></motion.div>
   );
