@@ -17,7 +17,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="relative min-h-screen text-foreground overflow-hidden">
+    <div className="relative min-h-screen text-foreground">
       <div className="fixed inset-0 -z-10">
         <Image
           src="/bg.jpg"
