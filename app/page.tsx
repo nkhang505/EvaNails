@@ -39,7 +39,6 @@ export default function Home() {
         <Gallery />
         <Testimonials />
         <Contact />
-        <Footer />
         <FloatingActions />
       </div>
     </div>
