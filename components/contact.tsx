@@ -17,18 +17,18 @@ export default function Contact() {
           <div className="text-center">
             <Phone className="w-12 h-12 text-yellow-200 mx-auto mb-4" />
             <h3 className="font-semibold mb-2">Call Us</h3>
-            <h3 className="text-muted-foreground">(830) 701-8162</h3>
+            <h3 className="text-foreground">(830) 701-8162</h3>
           </div>
           <div className="text-center">
             <MapPin className="w-12 h-12 text-yellow-200 mx-auto mb-4" />
             <h3 className="font-semibold mb-2">Location</h3>
-            <h3 className="text-muted-foreground">936 Junction Hwy Suite D, Kerrville, TX 78028</h3>
+            <h3 className="text-foreground">936 Junction Hwy Suite D, Kerrville, TX 78028</h3>
           </div>
           <div className="text-center">
             <Clock className="w-12 h-12 text-yellow-200 mx-auto mb-4" />
             <h3 className="font-semibold mb-2">Hours</h3>
-            <h3 className="text-muted-foreground">Mon-Sat: 9:30 AM – 7:00 PM</h3>
-            <h3 className="text-muted-foreground text-sm">Closed Sunday</h3>
+            <h3 className="text-foreground">Mon-Sat: 9:30 AM – 7:00 PM</h3>
+            <h3 className="text-foreground text-sm">Closed Sunday</h3>
           </div>
         </div>
 

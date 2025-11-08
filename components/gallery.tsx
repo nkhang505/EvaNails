@@ -86,12 +86,12 @@ export default function Gallery() {
     <section id="gallery" className="relative py-20 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center p-1 mb-4 ">Our Gallery</h2>
-        <h3 className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <h3 className="text-center text-foreground mb-12 max-w-2xl mx-auto">
           Explore our latest nail designs and transformations
         </h3>
 
         {isLoading && (
-          <p className="text-center text-muted-foreground">
+          <p className="text-center text-foreground">
             Loading gallery...
           </p>
         )}

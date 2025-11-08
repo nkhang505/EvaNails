@@ -94,7 +94,7 @@ export default function Services() {
   if (isLoading) {
     return (
       <section id="services" className="py-20 bg-background text-center">
-        <p className="text-muted-foreground">Loading services...</p>
+        <p className="text-foreground">Loading services...</p>
       </section>
     )
   }
@@ -115,7 +115,7 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center mb-4">Our Services</h2>
-        <h3 className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <h3 className="text-center text-foreground mb-12 max-w-2xl mx-auto">
           Discover our range of luxurious nail and spa services designed to make you look and feel your best.
         </h3>
 
@@ -193,7 +193,7 @@ export default function Services() {
                           {service.name}
                         </h3>
                         {service.description && (
-                          <h4 className="text-sm text-muted-foreground mt-2">{service.description}</h4>
+                          <h4 className="text-sm text-foreground mt-2">{service.description}</h4>
                         )}
                       </div>
                       <div className="text-right ml-6">

@@ -39,7 +39,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
         <Card className="bg-card border-border p-8 w-full max-w-md shadow-lg">
           <h2 className="text-center mb-2">Eva Nails Admin</h2>
-          <p className="text-center text-muted-foreground mb-8">
+          <p className="text-center text-foreground mb-8">
             Enter PIN to access admin panel
           </p>
 
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
         <div className="mb-8">
           <Card className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 text-center">
             <h2 className="text-primary">Welcome, Admin!</h2>
-            <p className="text-muted-foreground mt-2">
+            <p className="text-foreground mt-2">
               Manage services, update the gallery, and track your daily and weekly reports.
             </p>
           </Card>
@@ -127,7 +127,7 @@ export default function AdminDashboard() {
               variant="ghost"
               className={`rounded-none border-b-2 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base transition-all px-3 sm:px-4 py-2 sm:py-3 ${activeTab === tab.key
                   ? "border-primary text-primary"
-                  : "border-transparent text-muted-foreground"
+                  : "border-transparent text-foreground"
                 }`}
             >
               {tab.icon}

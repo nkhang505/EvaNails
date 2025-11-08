@@ -174,7 +174,7 @@ export default function DailyManager() {
         {error && <p className="text-destructive mb-3 text-sm">{error}</p>}
 
         {isLoading ? (
-          <p className="text-muted-foreground text-center py-6 text-sm sm:text-base">
+          <p className="text-foreground text-center py-6 text-sm sm:text-base">
             Loading daily data...
           </p>
         ) : (
@@ -267,7 +267,7 @@ export default function DailyManager() {
           <DialogHeader>
             <DialogTitle>Confirm Delete</DialogTitle>
           </DialogHeader>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-foreground text-sm">
             Are you sure you want to delete this row? This action cannot be undone.
           </p>
           <DialogFooter className="flex justify-end gap-2 mt-4">

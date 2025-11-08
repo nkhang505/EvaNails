@@ -123,9 +123,9 @@ export default function WeeklyManager() {
         {/* Status */}
         {error && <p className="text-destructive mb-4 text-center">{error}</p>}
         {isLoading ? (
-          <p className="text-muted-foreground text-center py-6">Loading weekly data...</p>
+          <p className="text-foreground text-center py-6">Loading weekly data...</p>
         ) : summaries.length === 0 ? (
-          <p className="text-muted-foreground text-center py-6">No data for this week.</p>
+          <p className="text-foreground text-center py-6">No data for this week.</p>
         ) : (
           <>
             {/* Desktop Table */}
@@ -173,7 +173,7 @@ export default function WeeklyManager() {
                 return (
                   <Card key={s.name} className="p-4 border border-border shadow-sm">
                     <h4 className="font-semibold text-primary mb-1">{s.name}</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-foreground">
                       <strong>Income / Tip:</strong> ${s.totalIncome.toFixed(2)} / ${s.totalTip.toFixed(2)}
                     </p>
                     <p className="text-sm text-green-700 font-semibold mt-1">

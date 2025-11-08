@@ -89,7 +89,7 @@ export default function GalleryPage() {
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-primary mb-2">{image.title}</h3>
-                    {image.description && <p className="text-sm text-muted-foreground mb-3">{image.description}</p>}
+                    {image.description && <p className="text-sm text-foreground mb-3">{image.description}</p>}
                     <p className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full inline-block">
                       {image.category}
                     </p>
@@ -99,7 +99,7 @@ export default function GalleryPage() {
             </div>
           ) : (
             <div className="text-center py-20">
-              <p className="text-muted-foreground text-lg">No gallery images found</p>
+              <p className="text-foreground text-lg">No gallery images found</p>
             </div>
           )}
         </div>
