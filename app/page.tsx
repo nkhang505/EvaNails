@@ -10,6 +10,7 @@ import Contact from "@/components/contact"
 import Navigation from "@/components/navigation"
 import FloatingActions from "@/components/floating-actions"
 import Testimonials from "@/components/testimonials"
+import Footer from "@/components/footer"
 import { CenterImage } from "@/components/center-image"
 
 export default function Home() {
