@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* ✅ Foreground content */}
       <div className="relative z-10">
-        <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+        <Navigation />
         <Hero />
         <CenterImage />
         <About />

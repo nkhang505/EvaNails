@@ -3,7 +3,8 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase/client"
 import Link from "next/link"
-import { ScrollVelocityContainer, ScrollVelocityRow } from "./ui/scroll-based-velocity"
+import { Marquee } from "./ui/marquee"
+import Image from "next/image"
 
 interface GalleryImage {
   id: string
@@ -97,30 +98,32 @@ export default function Gallery() {
         {error && <p className="text-center text-destructive">{error}</p>}
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
-          <ScrollVelocityContainer className="w-full">
-            <ScrollVelocityRow baseVelocity={2} direction={1} id="scr-1">
-              {firstHalf &&
+          <Marquee reverse>
+                {firstHalf &&
                 firstHalf.map((item, index) => (
-                  <img
+                  <Image
                     key={`imgr-${index}`}
                     src={item.image_url || "/placeholder.svg"}
                     alt={item.title}
+                    width={50}
+                    height={50}
                     className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-4"
                   />
                 ))}
-            </ScrollVelocityRow>
-            <ScrollVelocityRow baseVelocity={2} direction={-1} id="scr-2">
-              {secondHalf &&
+          </Marquee>
+          <Marquee>
+                {secondHalf &&
                 secondHalf.map((item, index) => (
-                  <img
-                    key={`imgl-${index}`}
+                  <Image
+                    key={`imgr-${index}`}
                     src={item.image_url || "/placeholder.svg"}
                     alt={item.title}
+                    width={50}
+                    height={50}
                     className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-4"
                   />
                 ))}
-            </ScrollVelocityRow>
-          </ScrollVelocityContainer>
+          </Marquee>
         </div>
 
         <div className="flex justify-center mt-12">
