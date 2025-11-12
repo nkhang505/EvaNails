@@ -180,7 +180,7 @@ export default function DailyManager() {
         ) : (
           <>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-border rounded-lg overflow-hidden text-sm sm:text-base">
+              <table className="min-w-full border border-border rounded-lg overflow-hidden text-lg lg:text-base">
                 <thead className="bg-primary/10 sticky top-0">
                   <tr>
                     <th className="py-2 sm:py-3 px-2 sm:px-4 text-left font-semibold">Name</th>
@@ -197,7 +197,7 @@ export default function DailyManager() {
                           value={r.name}
                           placeholder="Enter name"
                           onChange={(e) => handleChange(r.id, "name", e.target.value)}
-                          className="w-full text-sm sm:text-base"
+                          className="w-full text-lg lg:text-base"
                         />
                       </td>
                       <td className="py-1.5 sm:py-2">
@@ -206,7 +206,7 @@ export default function DailyManager() {
                           value={r.income ?? ""}
                           placeholder=""
                           onChange={(e) => handleChange(r.id, "income", e.target.value)}
-                          className="w-full text-sm sm:text-base"
+                          className="w-full text-lg lg:text-base"
                         />
                       </td>
                       <td className="py-1.5 sm:py-2">
@@ -215,7 +215,7 @@ export default function DailyManager() {
                           value={r.tip ?? ""}
                           placeholder=""
                           onChange={(e) => handleChange(r.id, "tip", e.target.value)}
-                          className="w-full text-sm sm:text-base"
+                          className="w-full text-lg lg:text-base"
                         />
                       </td>
                       <td className="py-1.5 sm:py-2 flex justify-center sm:justify-start gap-2">

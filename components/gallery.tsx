@@ -97,7 +97,7 @@ export default function Gallery() {
         )}
         {error && <p className="text-center text-destructive">{error}</p>}
 
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-8">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
           <Marquee reverse>
                 {firstHalf &&
                 firstHalf.map((item, index) => (
@@ -107,7 +107,7 @@ export default function Gallery() {
                     alt={item.title}
                     width={50}
                     height={50}
-                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-4"
+                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-2"
                   />
                 ))}
           </Marquee>
@@ -120,13 +120,13 @@ export default function Gallery() {
                     alt={item.title}
                     width={50}
                     height={50}
-                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-4"
+                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-2"
                   />
                 ))}
           </Marquee>
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-2">
           <Link href="/gallery">
             <Button className="bg-primary hover:bg-primary/80 text-background px-8 py-2 rounded-lg font-semibold transition-all duration-300">
               View All Gallery
