@@ -107,6 +107,7 @@ export default function Gallery() {
                 width={300}
                 height={300}
                 className="h-64 w-64 rounded-lg object-cover shadow-sm mb-2"
+                priority
               />
             ))}
           </SmoothMarquee>
@@ -120,6 +121,7 @@ export default function Gallery() {
                 width={300}
                 height={300}
                 className="h-64 w-64 rounded-lg object-cover shadow-sm mt-2 mb-2"
+                priority
               />
             ))}
           </SmoothMarquee>
