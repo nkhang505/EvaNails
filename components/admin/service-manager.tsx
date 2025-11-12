@@ -39,7 +39,7 @@ const InputField = React.memo(
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full px-4 py-2 bg-background border border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+        className="w-full px-4 py-2 bg-background border border-border rounded-md text-foreground placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
       />
     </div>
   )
@@ -218,7 +218,7 @@ export default function ServiceManager() {
     )
   }
 
-  if (isLoading) return <div className="text-center text-muted-foreground">Loading services...</div>
+  if (isLoading) return <div className="text-center text-foreground">Loading services...</div>
 
   // Group services by category
   const categories = Array.from(new Set(services.map((s) => s.category)))
@@ -288,12 +288,12 @@ export default function ServiceManager() {
                   >
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground">{service.name}</h4>
-                      <p className="text-sm text-muted-foreground mt-1 truncate" title={service.description}>{service.description || "No description"}</p>
+                      <p className="text-sm text-foreground mt-1 truncate" title={service.description}>{service.description || "No description"}</p>
                       <div className="flex gap-2 mt-2 flex-wrap items-center">
                         <span className="bg-primary/10 text-primary px-2 py-1 rounded-full font-semibold text-sm">${service.price.toFixed(2)}</span>
                         {service.full_set_price && <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">Full: ${service.full_set_price.toFixed(2)}</span>}
                         {service.fill_ins_price && <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">Fill: ${service.fill_ins_price.toFixed(2)}</span>}
-                        <span className="bg-background text-muted-foreground px-2 py-1 rounded-full text-xs">{service.category}</span>
+                        <span className="bg-background text-foreground px-2 py-1 rounded-full text-xs">{service.category}</span>
                       </div>
                     </div>
                     <div className="flex gap-2">
@@ -314,7 +314,7 @@ export default function ServiceManager() {
           <DialogHeader>
             <DialogTitle>Confirm Delete</DialogTitle>
           </DialogHeader>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-foreground text-sm">
             Are you sure you want to delete this service? This action cannot be undone.
           </p>
           <DialogFooter className="flex justify-end gap-2 mt-4">

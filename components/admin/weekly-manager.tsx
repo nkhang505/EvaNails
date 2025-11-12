@@ -3,8 +3,10 @@
 import React, { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Calendar } from "lucide-react"
+import { ChevronLeft, ChevronRight, Calendar, Download } from "lucide-react"
 import { supabase } from "@/lib/supabase/client"
+import jsPDF from "jspdf"
+import autoTable from "jspdf-autotable"
 
 interface Report {
   id: string
@@ -98,6 +100,41 @@ export default function WeeklyManager() {
 
   const displayEnd = getSundayFromMonday(weekStart)
 
+  const exportToPDF = () => {
+    if (summaries.length === 0) return
+
+    const doc = new jsPDF()
+
+    // Title
+    doc.setFontSize(16)
+    doc.text("Weekly Summary", 14, 20)
+    doc.setFontSize(12)
+    doc.text(`Week: ${formatDisplayDate(weekStart)} - ${formatDisplayDate(displayEnd)}`, 14, 28)
+
+    const headers = [["Name", "Income", "Tip", "Check + Tip", "Cash"]]
+    const rows = summaries.map((s) => {
+      const checkPlusTip = s.totalIncome * 0.6 * 0.6 + s.totalTip
+      const cash = s.totalIncome * 0.6 * 0.4
+      return [
+        s.name,
+        `$${s.totalIncome.toFixed(2)}`,
+        `$${s.totalTip.toFixed(2)}`,
+        `$${checkPlusTip.toFixed(2)}`,
+        `$${cash.toFixed(2)}`,
+      ]
+    })
+
+    autoTable(doc, {
+      startY: 35,
+      head: headers,
+      body: rows,
+      theme: "striped",
+      headStyles: { fillColor: [33, 150, 243] },
+    })
+
+    doc.save(`weekly_summary_${formatLocalDate(weekStart)}.pdf`)
+}
+
   return (
     <div className="space-y-6">
       <Card className="p-4 sm:p-6 bg-card border-border shadow-sm">
@@ -118,19 +155,22 @@ export default function WeeklyManager() {
               Next <ChevronRight size={16} />
             </Button>
           </div>
+          <Button onClick={exportToPDF} className="flex items-center gap-2 text-sm sm:text-base">
+            <Download size={16} /> Export
+          </Button>
         </div>
 
         {/* Status */}
         {error && <p className="text-destructive mb-4 text-center">{error}</p>}
         {isLoading ? (
-          <p className="text-muted-foreground text-center py-6">Loading weekly data...</p>
+          <p className="text-foreground text-center py-6">Loading weekly data...</p>
         ) : summaries.length === 0 ? (
-          <p className="text-muted-foreground text-center py-6">No data for this week.</p>
+          <p className="text-foreground text-center py-6">No data for this week.</p>
         ) : (
           <>
             {/* Desktop Table */}
             <div className="hidden sm:block overflow-x-auto rounded-md">
-              <table className="w-full border border-border rounded-md overflow-hidden text-sm">
+              <table className="w-full border border-border rounded-md overflow-hidden text-lg">
                 <thead className="bg-primary/10">
                   <tr>
                     <th className="py-3 px-4 text-left font-semibold text-foreground">Name</th>
@@ -172,14 +212,14 @@ export default function WeeklyManager() {
                 const cash = s.totalIncome * 0.6 * 0.4
                 return (
                   <Card key={s.name} className="p-4 border border-border shadow-sm">
-                    <h4 className="font-semibold text-primary mb-1">{s.name}</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <h4 className="font-semibold text-primary text-xl mb-1">{s.name}</h4>
+                    <p className="text-lg text-foreground">
                       <strong>Income / Tip:</strong> ${s.totalIncome.toFixed(2)} / ${s.totalTip.toFixed(2)}
                     </p>
-                    <p className="text-sm text-green-700 font-semibold mt-1">
+                    <p className="text-lg text-green-700 font-semibold mt-1">
                       Check + Tip: ${checkPlusTip.toFixed(2)}
                     </p>
-                    <p className="text-sm text-yellow-700 font-semibold">
+                    <p className="text-lg text-yellow-700 font-semibold">
                       Cash: ${cash.toFixed(2)}
                     </p>
                   </Card>

@@ -174,13 +174,13 @@ export default function DailyManager() {
         {error && <p className="text-destructive mb-3 text-sm">{error}</p>}
 
         {isLoading ? (
-          <p className="text-muted-foreground text-center py-6 text-sm sm:text-base">
+          <p className="text-foreground text-center py-6 text-sm sm:text-base">
             Loading daily data...
           </p>
         ) : (
           <>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-border rounded-lg overflow-hidden text-sm sm:text-base">
+              <table className="min-w-full border border-border rounded-lg overflow-hidden text-lg lg:text-base">
                 <thead className="bg-primary/10 sticky top-0">
                   <tr>
                     <th className="py-2 sm:py-3 px-2 sm:px-4 text-left font-semibold">Name</th>
@@ -197,7 +197,7 @@ export default function DailyManager() {
                           value={r.name}
                           placeholder="Enter name"
                           onChange={(e) => handleChange(r.id, "name", e.target.value)}
-                          className="w-full text-sm sm:text-base"
+                          className="w-full text-lg lg:text-base"
                         />
                       </td>
                       <td className="py-1.5 sm:py-2">
@@ -206,7 +206,7 @@ export default function DailyManager() {
                           value={r.income ?? ""}
                           placeholder=""
                           onChange={(e) => handleChange(r.id, "income", e.target.value)}
-                          className="w-full text-sm sm:text-base"
+                          className="w-full text-lg lg:text-base"
                         />
                       </td>
                       <td className="py-1.5 sm:py-2">
@@ -215,7 +215,7 @@ export default function DailyManager() {
                           value={r.tip ?? ""}
                           placeholder=""
                           onChange={(e) => handleChange(r.id, "tip", e.target.value)}
-                          className="w-full text-sm sm:text-base"
+                          className="w-full text-lg lg:text-base"
                         />
                       </td>
                       <td className="py-1.5 sm:py-2 flex justify-center sm:justify-start gap-2">
@@ -267,7 +267,7 @@ export default function DailyManager() {
           <DialogHeader>
             <DialogTitle>Confirm Delete</DialogTitle>
           </DialogHeader>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-foreground text-sm">
             Are you sure you want to delete this row? This action cannot be undone.
           </p>
           <DialogFooter className="flex justify-end gap-2 mt-4">

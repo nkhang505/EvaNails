@@ -37,7 +37,7 @@ const InputField = React.memo(
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full px-4 py-2 bg-background border border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+        className="w-full px-4 py-2 bg-background border border-border rounded-md text-foreground placeholder:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
       />
     </div>
   ),
@@ -238,7 +238,7 @@ export default function GalleryManager() {
     }
   }
 
-  if (isLoading) return <div className="text-center text-muted-foreground">Loading gallery images...</div>
+  if (isLoading) return <div className="text-center text-foreground">Loading gallery images...</div>
 
   const categories = Array.from(new Set(images.map((img) => img.category)))
   const groupedImages = categories.map((category) => ({
@@ -279,7 +279,7 @@ export default function GalleryManager() {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="block w-full text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+              className="block w-full text-sm text-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
             />
             {previewUrl && (
               <img src={previewUrl} alt="Preview" className="w-24 h-24 rounded-md object-cover mt-2 border" />
@@ -345,14 +345,14 @@ export default function GalleryManager() {
                       />
                       <div className="flex-1">
                         <h4 className="font-semibold text-foreground">{image.title}</h4>
-                        <p className="text-sm text-muted-foreground mt-1 truncate" title={image.description}>
+                        <p className="text-sm text-foreground mt-1 truncate" title={image.description}>
                           {image.description || "No description"}
                         </p>
                         <div className="flex gap-2 mt-2 flex-wrap items-center">
                           <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
                             Order: {image.display_order}
                           </span>
-                          <span className="bg-background text-muted-foreground px-2 py-1 rounded-full text-xs">
+                          <span className="bg-background text-foreground px-2 py-1 rounded-full text-xs">
                             {image.category}
                           </span>
                         </div>
@@ -389,7 +389,7 @@ export default function GalleryManager() {
           <DialogHeader>
             <DialogTitle className="h3">Confirm Delete</DialogTitle>
           </DialogHeader>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-foreground text-sm">
             Are you sure you want to delete this image? This action cannot be undone.
           </p>
           <DialogFooter className="flex justify-end gap-2 mt-4">

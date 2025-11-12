@@ -47,7 +47,7 @@ export default function Testimonials() {
     <section id="testimonials" className="py-20 bg-card/50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-center p-1 mb-4 ">Client Testimonials</h2>
-        <h3 className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <h3 className="text-center text-foreground mb-12 max-w-2xl mx-auto">
           Hear from our satisfied clients about their experience at Eva Nails
         </h3>
 
