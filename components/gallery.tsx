@@ -75,7 +75,7 @@ export default function Gallery() {
   }
 
   // limit visible images
-  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 20)
+  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 10)
 
   // Split the images into two halves
   const half = Math.ceil(displayedImages.length / 2)
