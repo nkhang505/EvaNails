@@ -27,18 +27,37 @@ export default function Home() {
     pages.forEach((page) => router.prefetch(page))
   }, [router])
 
-  // Wait until everything is fully loaded
+  // ✅ Wait until all images & components finish loading
   useEffect(() => {
-    const handlePageLoad = () => {
-      setTimeout(() => setLoading(false), 600) // small delay for smooth fade
+    const waitForImages = async () => {
+      const allImages = Array.from(document.images)
+      const unloaded = allImages.filter((img) => !img.complete)
+
+      if (unloaded.length === 0) {
+        // Everything is already loaded
+        finishLoading()
+        return
+      }
+
+      await Promise.all(
+        unloaded.map(
+          (img) =>
+            new Promise((resolve) => {
+              img.addEventListener("load", resolve)
+              img.addEventListener("error", resolve) // handle broken links safely
+            })
+        )
+      )
+
+      finishLoading()
     }
 
-    if (document.readyState === "complete") {
-      handlePageLoad()
-    } else {
-      window.addEventListener("load", handlePageLoad)
-      return () => window.removeEventListener("load", handlePageLoad)
+    const finishLoading = () => {
+      // Small buffer for smoother fade transition
+      setTimeout(() => setLoading(false), 500)
     }
+
+    waitForImages()
   }, [])
 
   return (
@@ -106,6 +125,7 @@ export default function Home() {
         <Contact />
         <Ad />
         <FloatingActions />
+        <Footer />
       </motion.div>
     </div>
   )
