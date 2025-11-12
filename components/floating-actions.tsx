@@ -12,7 +12,7 @@ export default function FloatingActions() {
   }
 
   const handleDirections = () => {
-    const address = "936 Junction Hwy Suite D, Kerrville, TX 78028"
+    const address = "936 Junction Hwy Suite.D, Kerrville, TX 78028"
     const encodedAddress = encodeURIComponent(address)
     window.location.href = `https://maps.google.com/?q=${encodedAddress}`
   }
