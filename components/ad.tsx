@@ -1,6 +1,7 @@
 ﻿"use client"
 
 import { useEffect, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
 
@@ -12,7 +13,7 @@ export default function GrandOpeningAd() {
     // Show ad 1 second after page loads
     const timer = setTimeout(() => setVisible(true), 1000)
 
-    // Auto-close after 10 seconds
+    // Auto-close after 16 seconds
     const autoCloseTimer = setTimeout(() => {
       handleClose()
     }, 16000)
@@ -25,59 +26,68 @@ export default function GrandOpeningAd() {
 
   const handleClose = () => {
     setClosing(true)
-    setTimeout(() => {
-      setVisible(false)
-    }, 400)
+    setTimeout(() => setVisible(false), 400)
   }
 
-  if (!visible) return null
-
   return (
-    <div
-      className={`
-        fixed inset-0 z-50 flex items-center justify-center
-        bg-black/50 backdrop-blur-sm transition-opacity duration-500
-        ${closing ? "opacity-0" : "opacity-100"}
-      `}
-    >
-      <div
-        className={`
-          relative bg-black/90 text-gray-900 rounded-2xl shadow-2xl
-          p-8 sm:p-10 max-w-lg w-[90%] text-center
-          transform transition-all duration-500
-          ${closing ? "scale-95 opacity-0" : "scale-100 opacity-100"}
-        `}
-      >
-        {/* Close Button */}
-        <Button
-          onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
-          aria-label="Close ad"
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          key="ad-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
         >
-          <X size={22} />
-        </Button>
+          <motion.div
+            key="ad-content"
+            initial={{ scale: 0.6, opacity: 0, y: 30 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 15,
+            }}
+            className="relative bg-black/90 text-gray-900 rounded-2xl shadow-2xl
+                       p-8 sm:p-10 max-w-lg w-[90%] text-center"
+          >
+            {/* Close Button */}
+            <Button
+              onClick={handleClose}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              aria-label="Close ad"
+            >
+              <X size={22} />
+            </Button>
 
-        {/* Content */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-primary mb-4">
-          🎉 Grand Opening!
-        </h2>
-        <p className="text-base sm:text-lg text-white leading-relaxed mb-6">
-          We’re thrilled to welcome you!
-          Enjoy <span className="font-bold text-primary">20% OFF all services</span> for a limited time only.
-          Treat yourself to a luxury experience at <span className="font-semibold">Eva Nails Salon</span> 💅✨
-        </p>
+            {/* Content */}
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-primary mb-4">
+              🎉 Grand Opening!
+            </h2>
+            <p className="text-base sm:text-lg text-white leading-relaxed mb-6">
+              We’re thrilled to welcome you!
+              Enjoy{" "}
+              <span className="font-bold text-primary">20% OFF all services</span>{" "}
+              for a limited time only.
+              Treat yourself to a luxury experience at{" "}
+              <span className="font-semibold">Eva Nails Salon</span> 💅✨
+            </p>
 
-        <Button
-          size="lg"
-          className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-lg px-8 py-4 rounded-xl"
-          onClick={() => {
-            handleClose()
-            window.location.href = "tel:8307018162"
-          }}
-        >
-          Call to Book Now
-        </Button>
-      </div>
-    </div>
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-lg px-8 py-4 rounded-xl"
+              onClick={() => {
+                handleClose()
+                window.location.href = "tel:8307018162"
+              }}
+            >
+              Call to Book Now
+            </Button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
