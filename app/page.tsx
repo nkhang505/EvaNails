@@ -125,7 +125,6 @@ export default function Home() {
         <Contact />
         <Ad />
         <FloatingActions />
-        <Footer />
       </motion.div>
     </div>
   )
