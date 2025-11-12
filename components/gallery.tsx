@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase/client"
 import Link from "next/link"
-import { Marquee } from "./ui/marquee"
+import { SmoothMarquee } from "./ui/marquee"
 import Image from "next/image"
 
 interface GalleryImage {
@@ -75,7 +75,7 @@ export default function Gallery() {
   }
 
   // limit visible images
-  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 20)
+  const displayedImages = showAll ? galleryImages : galleryImages.slice(0, 10)
 
   // Split the images into two halves
   const half = Math.ceil(displayedImages.length / 2)
@@ -98,32 +98,31 @@ export default function Gallery() {
         {error && <p className="text-center text-destructive">{error}</p>}
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <Marquee reverse>
-                {firstHalf &&
-                firstHalf.map((item, index) => (
-                  <Image
-                    key={`imgr-${index}`}
-                    src={item.image_url || "/placeholder.svg"}
-                    alt={item.title}
-                    width={50}
-                    height={50}
-                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-2"
-                  />
-                ))}
-          </Marquee>
-          <Marquee>
-                {secondHalf &&
-                secondHalf.map((item, index) => (
-                  <Image
-                    key={`imgr-${index}`}
-                    src={item.image_url || "/placeholder.svg"}
-                    alt={item.title}
-                    width={50}
-                    height={50}
-                    className="mx-2 inline-block h-64 md:h-80 w-64 md:w-80 rounded-lg object-cover shadow-sm mb-2"
-                  />
-                ))}
-          </Marquee>
+          <SmoothMarquee speed={60}>
+            {firstHalf.map((item, index) => (
+              <Image
+                key={`first-${index}`}
+                src={item.image_url || "/placeholder.svg"}
+                alt={item.title}
+                width={300}
+                height={300}
+                className="h-64 w-64 rounded-lg object-cover shadow-sm mb-2"
+              />
+            ))}
+          </SmoothMarquee>
+
+          <SmoothMarquee speed={60} reverse>
+            {secondHalf.map((item, index) => (
+              <Image
+                key={`second-${index}`}
+                src={item.image_url || "/placeholder.svg"}
+                alt={item.title}
+                width={300}
+                height={300}
+                className="h-64 w-64 rounded-lg object-cover shadow-sm mt-2 mb-2"
+              />
+            ))}
+          </SmoothMarquee>
         </div>
 
         <div className="flex justify-center mt-2">
