@@ -56,7 +56,7 @@ export default function GrandOpeningAd() {
             {/* Close Button */}
             <Button
               onClick={handleClose}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              className="absolute top-4 right-4 text-gray-400 text-black transition"
               aria-label="Close ad"
             >
               <X size={22} />
