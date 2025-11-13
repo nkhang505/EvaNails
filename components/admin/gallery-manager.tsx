@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Trash2, Edit2, Plus, ChevronDown, ChevronUp, Upload } from "lucide-react"
 import { supabase } from "@/lib/supabase/client"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import imageCompression from "browser-image-compression";
 
 interface GalleryImage {
   id: string
@@ -96,16 +97,51 @@ export default function GalleryManager() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }, [])
 
+  const compressImage = async (file: File): Promise<File> => {
+    try {
+      // Start with high quality
+      let quality = 0.8;
+      let compressedFile = file;
+
+      // Try compressing progressively until file < 500KB
+      for (let i = 0; i < 5; i++) {
+        const options = {
+          maxSizeMB: 0.5, // target ~500KB
+          maxWidthOrHeight: 1200, // reasonable web resolution
+          initialQuality: quality,
+          useWebWorker: true,
+        };
+
+        compressedFile = await imageCompression(file, options);
+
+        if (compressedFile.size / 1024 <= 500) break; // under 500KB
+        quality -= 0.1; // reduce quality gradually
+      }
+
+      return compressedFile;
+    } catch (err) {
+      console.error("Compression error:", err);
+      return file; // fallback to original if compression fails
+    }
+  };
+
   // Upload image file to Supabase Storage
   const uploadImageToSupabase = async (file: File): Promise<string> => {
-    const fileName = `${Date.now()}-${file.name}`
-    const { data, error } = await supabase.storage.from("gallery").upload(fileName, file)
+    try {
+      const compressedFile = await compressImage(file); // compress first
 
-    if (error) throw error
+      const fileName = `${Date.now()}-${compressedFile.name}`;
+      const { data, error } = await supabase.storage.from("gallery").upload(fileName, compressedFile);
 
-    const { data: publicUrlData } = supabase.storage.from("gallery").getPublicUrl(fileName)
-    return publicUrlData.publicUrl
-  }
+      if (error) throw error;
+
+      const { data: publicUrlData } = supabase.storage.from("gallery").getPublicUrl(fileName);
+      return publicUrlData.publicUrl;
+    } catch (err) {
+      console.error("Upload error:", err);
+      throw err;
+    }
+  };
 
   const handleAdd = async () => {
     if (!file) {
