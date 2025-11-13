@@ -72,7 +72,7 @@ export default function GalleryPage() {
                 Back
               </Button>
             </Link>
-            <h2 className="p-2 text-2xl font-semibold">Gallery</h2>
+            <h2 className="p-2">Gallery</h2>
           </div>
 
           {error && (
