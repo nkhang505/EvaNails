@@ -109,14 +109,18 @@ export default function Services() {
   }
 
   return (
-    <section id="services" className="py-20 bg-background relative overflow-hidden">
+    <section
+      id="services"
+      className="py-20 bg-background relative overflow-hidden"
+    >
       {/* Decorative border line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center mb-4">Our Services</h2>
         <h3 className="text-center text-foreground mb-12 max-w-2xl mx-auto">
-          Discover our range of luxurious nail and spa services designed to make you look and feel your best.
+          Discover our range of luxurious nail and spa services designed to make
+          you look and feel your best.
         </h3>
 
         {/* Category Display */}
@@ -139,7 +143,8 @@ export default function Services() {
                   alt={category.title}
                   fill
                   style={{
-                    objectPosition: window.innerWidth < 640 ? "center 60%" : "center 80%", // mobile higher
+                    objectPosition:
+                      window.innerWidth < 640 ? "center 60%" : "center 80%", // mobile higher
                   }}
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -163,7 +168,7 @@ export default function Services() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm"
-              onClick={handleBackdropClick}  // Handle backdrop click to close
+              onClick={handleBackdropClick} // Handle backdrop click to close
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -178,11 +183,24 @@ export default function Services() {
                     onClick={() => setSelectedCategory(null)}
                     className="p-2 bg-primary/20 hover:bg-primary/40 rounded-full transition-all duration-300 flex items-center justify-center"
                   >
-                    <X size={32} className="text-foreground hover:text-white transition-colors duration-300" />
+                    <X
+                      size={32}
+                      className="text-foreground hover:text-white transition-colors duration-300"
+                    />
                   </button>
                 </div>
 
-                <div className="p-6 space-y-4">
+                <div className="relative p-6 space-y-4 h-full overflow-auto">
+                  <Image
+                    src={getCategoryImage(selectedCategory!)}
+                    alt={selectedCategory!}
+                    fill
+                    style={{
+                      objectPosition:
+                        window.innerWidth < 640 ? "center 60%" : "center 80%", // mobile higher
+                    }}
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-20"
+                  />
                   {selectedCategoryData.services.map((service) => (
                     <div
                       key={service.id}
@@ -193,11 +211,15 @@ export default function Services() {
                           {service.name}
                         </h3>
                         {service.description && (
-                          <h4 className="text-sm text-foreground mt-2">{service.description}</h4>
+                          <h4 className="text-sm text-foreground mt-2">
+                            {service.description}
+                          </h4>
                         )}
                       </div>
                       <div className="text-right ml-6">
-                        <h3 className="font-bold text-lg text-primary">${service.price.toFixed(2)}</h3>
+                        <h3 className="font-bold text-lg text-primary">
+                          ${service.price.toFixed(2)}
+                        </h3>
                       </div>
                     </div>
                   ))}
@@ -211,5 +233,5 @@ export default function Services() {
       {/* Decorative bottom border */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
     </section>
-  )
+  );
 }

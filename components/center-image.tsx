@@ -29,7 +29,7 @@ export const CenterImage = () => {
         backgroundSize,
         opacity,
         backgroundImage:
-          "url(\"salon.JPG\")",
+          "url(\"salon.jpg\")",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
