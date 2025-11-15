@@ -44,7 +44,7 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center items-center text-center">
         <div className="flex justify-center">
           <Image
-            src="/logo.png"
+            src="/icon.png"
             alt="Eva Nails & Spa Logo"
             width={400}
             height={400}
@@ -67,13 +67,11 @@ export default function Hero() {
           }`}
           style={{ transitionDelay: "400ms" }}
         >
-          <Button
-            onClick={handleCall}
-            size="lg">
-              Call to Book Appointment
+          <Button onClick={handleCall} size="lg">
+            Call to Book Appointment
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }

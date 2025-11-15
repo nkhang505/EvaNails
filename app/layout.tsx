@@ -13,7 +13,10 @@ export const metadata: Metadata = {
   description:
     "Experience luxury nail care at Eva Nails Salon. Premium services, expert technicians, and elegant ambiance.",
   generator: "vercel.app",
-}
+  icons: {
+    icon: "/icon.png",
+  },
+};
 
 export default function RootLayout({
   children,

@@ -96,7 +96,7 @@ export default function Home() {
               }}
             >
               <Image
-                src="/logo.png"
+                src="/icon.png"
                 alt="Eva Nails Logo"
                 width={180}
                 height={180}
@@ -113,7 +113,9 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: loading ? 0 : 1 }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
-        className={`relative z-10 ${loading ? "pointer-events-none" : "pointer-events-auto"}`}
+        className={`relative z-10 ${
+          loading ? "pointer-events-none" : "pointer-events-auto"
+        }`}
       >
         <Navigation />
         <Hero />
@@ -127,5 +129,5 @@ export default function Home() {
         <FloatingActions />
       </motion.div>
     </div>
-  )
+  );
 }

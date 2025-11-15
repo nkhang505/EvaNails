@@ -82,13 +82,16 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/icon.png"
               alt="Eva Nails & Spa Logo"
               width={40}
               height={40}
               className="h-10 w-10"
             />
-            <span> <h2 className="text-4xl">Eva Nails Admin</h2></span>
+            <span>
+              {" "}
+              <h2 className="text-4xl">Eva Nails Admin</h2>
+            </span>
           </Link>
 
           <div className="flex justify-end w-full sm:w-auto">
@@ -108,7 +111,8 @@ export default function AdminDashboard() {
           <Card className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 text-center">
             <h2 className="text-primary">Welcome, Admin!</h2>
             <p className="text-foreground mt-2">
-              Manage services, update the gallery, and track your daily and weekly reports.
+              Manage services, update the gallery, and track your daily and
+              weekly reports.
             </p>
           </Card>
         </div>
@@ -116,19 +120,36 @@ export default function AdminDashboard() {
         {/* Navigation Tabs */}
         <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-4 mb-8 border-b border-border">
           {[
-            { key: "daily", label: "Daily Report", icon: <CalendarDays className="w-5 h-5" /> },
-            { key: "weekly", label: "Weekly Pay", icon: <DollarSign className="w-5 h-5" /> },
-            { key: "gallery", label: "Gallery", icon: <ImageIcon className="w-5 h-5" /> },
-            { key: "services", label: "Services", icon: <Settings className="w-5 h-5" /> },
+            {
+              key: "daily",
+              label: "Daily Report",
+              icon: <CalendarDays className="w-5 h-5" />,
+            },
+            {
+              key: "weekly",
+              label: "Weekly Pay",
+              icon: <DollarSign className="w-5 h-5" />,
+            },
+            {
+              key: "gallery",
+              label: "Gallery",
+              icon: <ImageIcon className="w-5 h-5" />,
+            },
+            {
+              key: "services",
+              label: "Services",
+              icon: <Settings className="w-5 h-5" />,
+            },
           ].map((tab) => (
             <Button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as typeof activeTab)}
               variant="ghost"
-              className={`rounded-none border-b-2 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base transition-all px-3 sm:px-4 py-2 sm:py-3 ${activeTab === tab.key
+              className={`rounded-none border-b-2 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base transition-all px-3 sm:px-4 py-2 sm:py-3 ${
+                activeTab === tab.key
                   ? "border-primary text-primary"
                   : "border-transparent text-foreground"
-                }`}
+              }`}
             >
               {tab.icon}
               <span className="hidden sm:inline">{tab.label}</span>
@@ -145,5 +166,5 @@ export default function AdminDashboard() {
         </div>
       </main>
     </div>
-  )
+  );
 }
